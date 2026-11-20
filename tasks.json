@@ -641,6 +641,83 @@
           "accept": "改这三条假设后收支表自动重算；新建站点价格改为 $120M 或分三期"
         }
       ]
+    },
+    {
+      "id": "M10",
+      "title": "阶段 10 · 区域经济与黄金储备",
+      "status": "todo",
+      "children": [
+        {
+          "id": "M10.1",
+          "title": "区域经济表数据模型与默认值",
+          "status": "todo",
+          "owner": "economy",
+          "prio": 1,
+          "deps": ["M9.1"],
+          "deliverable": "regions 七个区域的系数表写进 save.js；economyVersion 与迁移规则",
+          "accept": "所有系数从 regions 读取，代码里没有任何地区常量；改表即改成本"
+        },
+        {
+          "id": "M10.2",
+          "title": "站点列表与区域归属",
+          "status": "todo",
+          "owner": "economy",
+          "prio": 1,
+          "deps": ["M10.1"],
+          "deliverable": "19 个站点，含 id / region / goldKg / staff / status",
+          "accept": "站点数与地图引脚一致；每个站点有且只有一个区域"
+        },
+        {
+          "id": "M10.3",
+          "title": "金价与金库模型",
+          "status": "todo",
+          "owner": "engine",
+          "prio": 1,
+          "deps": ["M10.1"],
+          "deliverable": "kg→USD 估值、变现延迟、抵押 70%、运输丢失、盘点",
+          "accept": "金价改 10% 后估值同步；变现 1 回合后到账并扣价差；跨区运输有丢失判定"
+        },
+        {
+          "id": "M10.4",
+          "title": "区域成本接线",
+          "status": "todo",
+          "owner": "engine",
+          "prio": 1,
+          "deps": ["M10.2", "M9.2"],
+          "deliverable": "站点人事/设施/帷幕与出动成本按区域系数计算",
+          "accept": "北美与非洲同规模站点的月支出不同；总额与 docs/16 §5 对账"
+        },
+        {
+          "id": "M10.5",
+          "title": "区域表动态变动",
+          "status": "todo",
+          "owner": "economy",
+          "prio": 2,
+          "deps": ["M10.1"],
+          "deliverable": "月度漂移、事件改写、economySnapshot 快照",
+          "accept": "跑 12 个月系数有漂移但不出界；货币危机事件能把 labor 降 15%"
+        },
+        {
+          "id": "M10.6",
+          "title": "UI：站点 / 金库 / 区域三页",
+          "status": "todo",
+          "owner": "ui",
+          "prio": 2,
+          "deps": ["M10.4", "M10.5"],
+          "deliverable": "站点表、金库估值与动作、七区域系数表",
+          "accept": "三页可切换；金库变现与转移走确认；区域变化有箭头与高亮"
+        },
+        {
+          "id": "M10.7",
+          "title": "区域经济调参与回归",
+          "status": "todo",
+          "owner": "qa",
+          "prio": 2,
+          "deps": ["M10.6"],
+          "deliverable": "54 回合模拟：金价、金库、区域漂移",
+          "accept": "金库不会因金价下跌变成负资产；区域漂移不会让月支出翻倍"
+        }
+      ]
     }
   ]
 }
