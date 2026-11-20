@@ -713,7 +713,7 @@
           "status": "todo",
           "owner": "qa",
           "prio": 2,
-          "deps": ["M10.6", "M10.10"],
+          "deps": ["M10.6", "M10.10", "M10.11"],
           "deliverable": "54 回合模拟：金价、金库、区域漂移",
           "accept": "金库不会因金价下跌变成负资产；区域漂移不会让月支出翻倍"
         },
@@ -746,6 +746,16 @@
           "deps": ["M10.8", "M9.9"],
           "deliverable": "罢工 / 骚乱 / 泄密 / 资产冻结四类事件与后果",
           "accept": "张力 >0.55 时月触发率约 8%；四类事件各自改变站点状态或成本"
+        },
+        {
+          "id": "M10.11",
+          "title": "十年经济模拟器",
+          "status": "done",
+          "owner": "economy",
+          "prio": 1,
+          "deps": ["M10.9"],
+          "deliverable": "tools/econ-sim.mjs + docs/18 十年报告",
+          "accept": "node tools/econ-sim.mjs 跑完 120 个月，四种策略各有明确判定"
         }
       ]
     }

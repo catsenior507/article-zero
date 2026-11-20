@@ -13,6 +13,9 @@ mockups/01-save*.png
 mockups/02-save.png
 mockups/avatars.png
 
+# 模拟输出
+tools/out/
+
 # 系统与依赖
 .DS_Store
 Thumbs.db
