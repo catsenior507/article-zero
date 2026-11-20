@@ -17,11 +17,11 @@
 | `ui/*.svg` | **控件母版**（按钮 / 卡片，先画后用） | 见 `ui/README.md` |
 | `scp/*.png` | **SCP 官方部门徽记**（抓取自中文维基部门页） | 见 `scp/ATTRIBUTION.md` |
 
-> 界面里的 logo 已改为内联 SVG（`currentColor`），以便跟随四套主题变色；`marks/logo.svg` 保留为独立素材版。
+> 顶栏徽记当前使用 `scp/logo_250.png`（官方图，CC BY-SA）；`marks/logo.svg` 保留为自绘的独立素材版。
 
 ## SCP 识别元素（v4）
 
-界面里的基金会识别元素**全部是自绘致敬版，不是官方文件**：
+界面里的基金会识别元素：按钮与线框为自绘；**部门徽记与顶栏徽记使用官方 PNG**（CC BY-SA，见 `scp/ATTRIBUTION.md`）。下表记录的是 v4 自绘阶段的设计：
 
 | 元素 | 位置 | 说明 |
 |---|---|---|

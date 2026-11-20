@@ -70,6 +70,8 @@
 
 ## 许可与素材
 
+本仓库按 SCP Wiki [Games Licensing Guidelines](https://05command.wikidot.com/games-licensing-guidelines) 处理授权，完整说明与合规清单见 [LICENSING.md](LICENSING.md)。
+
 - 代码与文档：暂未指定开源许可（默认保留所有权利）。
 - 地图数据：Natural Earth，公有领域。
 - SCP 部门徽记：`assets/scp/` 来自 SCP 基金会中文维基，依 **CC BY-SA 3.0** 使用，逐张来源见 [ATTRIBUTION.md](assets/scp/ATTRIBUTION.md)。
