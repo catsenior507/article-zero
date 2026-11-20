@@ -1,7 +1,7 @@
 {
   "meta": {
     "project": "第零条 / ARTICLE ZERO",
-    "version": 1,
+    "version": 2,
     "updated": "2026-11-20",
     "description": "多 agent 协同的任务树。每个节点是一个可领取的任务，deps 指向必须先完成的节点 id；没有 deps 或 deps 全部 done 的节点即可并行领取。",
     "statuses": ["todo", "doing", "review", "done", "blocked"],
@@ -42,6 +42,13 @@
       "scope": ["mockups/events.js", "docs/03-K级情景链.md", "docs/05-事件卡库.md"],
       "can": ["写事件卡", "写情景链", "写结局"],
       "mustNot": ["改引擎逻辑"]
+    },
+    {
+      "id": "economy",
+      "name": "经济 / 数值",
+      "scope": ["docs/14-财政机制.md", "mockups/save.js", "mockups/engine.js"],
+      "can": ["调公式", "定初始值", "加财政事件"],
+      "mustNot": ["改界面结构", "改叙事文本"]
     },
     {
       "id": "art",
@@ -485,6 +492,113 @@
           "deps": ["M6.2", "M8.1"],
           "deliverable": "发布包 + docs/08 的条目正文",
           "accept": "LICENSING 与 ATTRIBUTION 齐全；条目勾选 CC BY-SA 3.0"
+        }
+      ]
+    },
+    {
+      "id": "M9",
+      "title": "阶段 9 · 财政机制",
+      "status": "todo",
+      "children": [
+        {
+          "id": "M9.1",
+          "title": "财政数据模型与初始值",
+          "status": "todo",
+          "owner": "economy",
+          "prio": 1,
+          "deps": ["M1.1"],
+          "deliverable": "income / expense / envelopes / debt / black 字段与默认值",
+          "accept": "覆盖 docs/14 §3–§4 的全部公式；初始值与文档一致（$120、净额 −5）"
+        },
+        {
+          "id": "M9.2",
+          "title": "月度结算与报表",
+          "status": "todo",
+          "owner": "engine",
+          "prio": 1,
+          "deps": ["M9.1", "M2.2"],
+          "deliverable": "月末结算顺序：收入 → 固定支出 → 缺口 → 事件 → 净额",
+          "accept": "点归档生成报表；净额与手算一致；报表可在档案回看"
+        },
+        {
+          "id": "M9.3",
+          "title": "预算信封与部门拨款",
+          "status": "todo",
+          "owner": "economy",
+          "prio": 1,
+          "deps": ["M9.2"],
+          "deliverable": "五个信封的分配与缺口惩罚",
+          "accept": "调低收容 → 容量上限下降；调高研究 → 部门进度加快"
+        },
+        {
+          "id": "M9.4",
+          "title": "双账与审计",
+          "status": "todo",
+          "owner": "engine",
+          "prio": 1,
+          "deps": ["M9.2"],
+          "deliverable": "黑账比例、审计概率、暴露后的 3 回合链",
+          "accept": "黑账 15% 时暴露概率落在公式区间；暴露触发审计链"
+        },
+        {
+          "id": "M9.5",
+          "title": "赤字、债务与接管",
+          "status": "todo",
+          "owner": "engine",
+          "prio": 1,
+          "deps": ["M9.2"],
+          "deliverable": "自动借债、2% 利息、$150 上限、接管投票",
+          "accept": "现金 < 0 自动发债；连续 3 回合触顶触发接管"
+        },
+        {
+          "id": "M9.6",
+          "title": "应急拨款与资产变现",
+          "status": "todo",
+          "owner": "engine",
+          "prio": 2,
+          "deps": ["M9.2"],
+          "deliverable": "+$40 / 权威 −8；+$25 / 资产 −1",
+          "accept": "冷却 6 回合；冷却中点击被拒绝并有提示"
+        },
+        {
+          "id": "M9.7",
+          "title": "赞助人与条件",
+          "status": "todo",
+          "owner": "content",
+          "prio": 2,
+          "deps": ["M9.2"],
+          "deliverable": "三种报价（驻站 / 共享研究 / 沉默）与反噬",
+          "accept": "接受后条件写入存档；违背后 3 回合内触发反噬"
+        },
+        {
+          "id": "M9.8",
+          "title": "财政 UI 面板（四页签）",
+          "status": "todo",
+          "owner": "ui",
+          "prio": 1,
+          "deps": ["M9.3", "M9.4", "M9.5"],
+          "deliverable": "总账 / 预算 / 债务 / 黑账 + 月末报表浮层",
+          "accept": "四页签可切换；预算滑块改动有权威代价确认；报表可回看"
+        },
+        {
+          "id": "M9.9",
+          "title": "财政事件",
+          "status": "todo",
+          "owner": "content",
+          "prio": 2,
+          "deps": ["M9.4"],
+          "deliverable": "审计、罢工、拨款延迟、勒索、捐赠五类",
+          "accept": "五类各有触发条件与后果；可在控制台手动触发"
+        },
+        {
+          "id": "M9.10",
+          "title": "财政调参与回归",
+          "status": "todo",
+          "owner": "qa",
+          "prio": 2,
+          "deps": ["M9.8", "M9.9"],
+          "deliverable": "54 回合模拟与三档难度",
+          "accept": "每档跑满一局，无负储备死锁、无无限刷钱路径"
         }
       ]
     }
