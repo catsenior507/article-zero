@@ -2,8 +2,8 @@
   <defs>
     <mask id="m">
       <rect width="96" height="96" fill="#000"/>
-      <path d="M14 96L18 80C22 73 34 70 48 70C62 70 74 73 78 80L82 96Z" fill="#fff"/>
-      <path d="M42 52h12v20H42z" fill="#fff"/>
+      <path d="M12 96L16 72C20 65 33 62 48 62C63 62 76 65 80 72L84 96Z" fill="#fff"/>
+      <path d="M42 50h12v14H42z" fill="#fff"/>
       <path d="M34 32c0-12 6-20 14-20s14 8 14 20c0 9-5 17-14 19-9-2-14-10-14-19z" fill="#fff"/>
       <path d="M34 29c1-11 7-17 14-17 6 0 11 4 13 11-5-2-9-1-13 2-5-2-9-1-14 4z" fill="#fff"/>
       <rect x="38" y="34" width="6.5" height="2.2" fill="#000"/>

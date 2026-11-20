@@ -62,6 +62,16 @@
    → 元叙事层(存档/信标/觉醒) → 平衡与打磨 → 发布 + SCP条目
 ```
 
+## 任务树（多 agent 协同）
+
+`tasks.json` 是整个项目的开发任务树：9 个阶段、44 个节点、35 个可领取任务，每个任务带 `owner / status / prio / deps / deliverable / accept`。
+
+```bash
+node tools/tasks-check.mjs
+```
+
+会校验 id、状态、依赖与循环，并列出**当前可并行领取**的任务和**等待依赖**的任务。领取规则：`status` 改 `doing`、填 `owner`；完成后改 `done`，下游节点自动进入可领取列表。
+
 ## 当前状态
 
 - 设计文档 01–12 完成；

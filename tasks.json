@@ -1,0 +1,492 @@
+{
+  "meta": {
+    "project": "第零条 / ARTICLE ZERO",
+    "version": 1,
+    "updated": "2026-11-20",
+    "description": "多 agent 协同的任务树。每个节点是一个可领取的任务，deps 指向必须先完成的节点 id；没有 deps 或 deps 全部 done 的节点即可并行领取。",
+    "statuses": ["todo", "doing", "review", "done", "blocked"],
+    "conventions": {
+      "id": "阶段.序号，例如 M2.3",
+      "owner": "roles 里的 id；空字符串表示未分配",
+      "prio": "1 高 / 2 中 / 3 低",
+      "accept": "验收条件，必须是可以检查的事实，不写形容词"
+    },
+    "criticalPath": ["M1.1", "M2.2", "M4.3", "M5.4", "M8.4"]
+  },
+
+  "roles": [
+    {
+      "id": "lead",
+      "name": "统筹",
+      "scope": ["tasks.json", "docs/", "README.md"],
+      "can": ["拆任务", "改优先级", "合并分支"],
+      "mustNot": ["直接改引擎实现"]
+    },
+    {
+      "id": "engine",
+      "name": "引擎 / 数据",
+      "scope": ["mockups/engine.js", "mockups/save.js", "mockups/state.js", "tools/"],
+      "can": ["改引擎", "加测试", "改存档格式"],
+      "mustNot": ["改 v2.css", "改界面 DOM"]
+    },
+    {
+      "id": "ui",
+      "name": "界面实现",
+      "scope": ["mockups/01-main.html", "mockups/02-dept.html", "mockups/time-ui.js", "mockups/time.css"],
+      "can": ["接线数据", "加交互"],
+      "mustNot": ["改 v2.css 的结构规则", "手改 assets/icons.js 的生成段"]
+    },
+    {
+      "id": "content",
+      "name": "叙事 / 内容",
+      "scope": ["mockups/events.js", "docs/03-K级情景链.md", "docs/05-事件卡库.md"],
+      "can": ["写事件卡", "写情景链", "写结局"],
+      "mustNot": ["改引擎逻辑"]
+    },
+    {
+      "id": "art",
+      "name": "美术",
+      "scope": ["assets/avatars/", "assets/ui/", "mockups/avatars.html"],
+      "can": ["加头像", "改控件母版"],
+      "mustNot": ["改 JS 逻辑"]
+    },
+    {
+      "id": "qa",
+      "name": "测试",
+      "scope": ["tools/", "_qa/"],
+      "can": ["加测试", "提缺陷", "跑回归"],
+      "mustNot": ["直接修业务代码"]
+    },
+    {
+      "id": "release",
+      "name": "发布 / 合规",
+      "scope": ["LICENSING.md", "README.md", "docs/08-SCP条目企划.md"],
+      "can": ["改授权声明", "打发布包"],
+      "mustNot": ["改玩法数值"]
+    }
+  ],
+
+  "lanes": [
+    { "id": "L1", "name": "数据线", "chain": ["M1.1", "M1.2", "M2.2"] },
+    { "id": "L2", "name": "界面线", "chain": ["M3.2", "M3.3", "M4.2"] },
+    { "id": "L3", "name": "内容线", "chain": ["M1.3", "M5.1", "M5.3"] },
+    { "id": "L4", "name": "美术线", "chain": ["M7.1", "M7.3", "M7.2"] },
+    { "id": "L5", "name": "元叙事线", "chain": ["M6.1", "M6.2", "M6.3"] }
+  ],
+
+  "tree": [
+    {
+      "id": "M0",
+      "title": "阶段 0 · 基线",
+      "status": "done",
+      "children": [
+        {
+          "id": "M0.1",
+          "title": "设计文档 01–13",
+          "status": "done",
+          "owner": "lead",
+          "prio": 1,
+          "deps": [],
+          "deliverable": "docs/ 下 13 份文档",
+          "accept": "每份文档都有目录与可执行结论"
+        },
+        {
+          "id": "M0.2",
+          "title": "仓库、许可与署名",
+          "status": "done",
+          "owner": "release",
+          "prio": 1,
+          "deps": [],
+          "deliverable": "LICENSING.md、assets/scp/ATTRIBUTION.md、公开仓库",
+          "accept": "仓库公开可访问；授权段落与素材清单一致"
+        },
+        {
+          "id": "M0.3",
+          "title": "1920×1080 原型与四主题",
+          "status": "done",
+          "owner": "ui",
+          "prio": 1,
+          "deps": [],
+          "deliverable": "01-main.html、02-dept.html、v2.css",
+          "accept": "四套主题均可打开，无报错"
+        },
+        {
+          "id": "M0.4",
+          "title": "素材基线（控件母版、头像、地图）",
+          "status": "done",
+          "owner": "art",
+          "prio": 2,
+          "deps": [],
+          "deliverable": "assets/ui、assets/avatars、assets/map",
+          "accept": "每个素材有单独文件与一张 1× 预览"
+        }
+      ]
+    },
+    {
+      "id": "M1",
+      "title": "阶段 1 · 数据层",
+      "status": "doing",
+      "children": [
+        {
+          "id": "M1.1",
+          "title": "state.js 数据契约落地",
+          "status": "todo",
+          "owner": "engine",
+          "prio": 1,
+          "deps": ["M0.3"],
+          "deliverable": "mockups/state.js：资源、部门、待决、日期",
+          "accept": "界面九个资源数字与待决计数全部来自 STATE，HTML 里没有硬编码数字"
+        },
+        {
+          "id": "M1.2",
+          "title": "存档读写（默认档 → 多档 / 导出）",
+          "status": "todo",
+          "owner": "engine",
+          "prio": 1,
+          "deps": ["M1.1"],
+          "deliverable": "save.js 扩展为 load/save/list/export",
+          "accept": "localStorage 存 3 档，切换后界面与时间轴一致；导出 JSON 可再导入"
+        },
+        {
+          "id": "M1.3",
+          "title": "事件目录全量（42 张卡）",
+          "status": "todo",
+          "owner": "content",
+          "prio": 1,
+          "deps": ["M0.1"],
+          "deliverable": "events.js 42 条，字段按 docs/04",
+          "accept": "id 唯一；控制台列全 42 条；每条有 type/tone/title"
+        },
+        {
+          "id": "M1.4",
+          "title": "资源结算规则",
+          "status": "todo",
+          "owner": "engine",
+          "prio": 1,
+          "deps": ["M1.1"],
+          "deliverable": "月末经费/污染/容量/士气的增减公式",
+          "accept": "公式写进 docs/01 并有一条单测覆盖"
+        }
+      ]
+    },
+    {
+      "id": "M2",
+      "title": "阶段 2 · 时间与回合",
+      "status": "doing",
+      "children": [
+        {
+          "id": "M2.1",
+          "title": "事件调度与逾期结算",
+          "status": "done",
+          "owner": "engine",
+          "prio": 1,
+          "deps": [],
+          "deliverable": "engine.js schedule/collectDue",
+          "accept": "node tools/engine-test.mjs 13 条全绿"
+        },
+        {
+          "id": "M2.2",
+          "title": "回合结算（归档本月）",
+          "status": "todo",
+          "owner": "engine",
+          "prio": 1,
+          "deps": ["M1.4", "M2.1"],
+          "deliverable": "nextMonth 触发结算：资源变化 + 抽事件 + 回合 +1",
+          "accept": "点归档后日期到下月 1 日，资源按公式变化，待决队列新增 1–2 条"
+        },
+        {
+          "id": "M2.3",
+          "title": "时间轴刻度与事件标记",
+          "status": "todo",
+          "owner": "ui",
+          "prio": 2,
+          "deps": ["M2.1"],
+          "deliverable": "年份刻度、已排期事件在轴上的标记",
+          "accept": "1× 下能看出当前所处年份；标记与 nextEvent 一致"
+        },
+        {
+          "id": "M2.4",
+          "title": "后台与切页的时间一致性",
+          "status": "todo",
+          "owner": "engine",
+          "prio": 2,
+          "deps": ["M2.1"],
+          "deliverable": "visibilitychange 时暂停/补算策略",
+          "accept": "切走 30 秒回来，日期不跳月；切回后继续按原速走"
+        }
+      ]
+    },
+    {
+      "id": "M3",
+      "title": "阶段 3 · 主界面接线",
+      "status": "doing",
+      "children": [
+        {
+          "id": "M3.1",
+          "title": "资源条读存档",
+          "status": "done",
+          "owner": "ui",
+          "prio": 1,
+          "deps": [],
+          "deliverable": "九个数字由 SAVE_DEFAULT.resources 驱动",
+          "accept": "改 save.js 的数字，界面随之变化"
+        },
+        {
+          "id": "M3.2",
+          "title": "预警条状态机",
+          "status": "doing",
+          "owner": "ui",
+          "prio": 1,
+          "deps": ["M1.1"],
+          "deliverable": "无 K / 单 K / 多 K 三态；多 K 显示 +N",
+          "accept": "三种 threat 值下预警条都正确；无 K 时立案/处置隐藏"
+        },
+        {
+          "id": "M3.3",
+          "title": "待决面板与队列",
+          "status": "doing",
+          "owner": "ui",
+          "prio": 1,
+          "deps": ["M1.3"],
+          "deliverable": "面板行由 pending 生成，支持已读/过期",
+          "accept": "触发事件后行出现在顶部，计数同步，关闭再开仍在"
+        },
+        {
+          "id": "M3.4",
+          "title": "测试控制台",
+          "status": "done",
+          "owner": "ui",
+          "prio": 1,
+          "deps": [],
+          "deliverable": "time-ui.js 控制台 + GameAPI",
+          "accept": "~ 打开；触发/跳时/重置可用；日志有 D+n"
+        },
+        {
+          "id": "M3.5",
+          "title": "地图引脚与热区读状态",
+          "status": "todo",
+          "owner": "ui",
+          "prio": 2,
+          "deps": ["M1.1"],
+          "deliverable": "pins/heat 由 STATE.map 渲染",
+          "accept": "改 STATE.map.pins 后地图引脚位置变化"
+        }
+      ]
+    },
+    {
+      "id": "M4",
+      "title": "阶段 4 · 部门与 O5",
+      "status": "todo",
+      "children": [
+        {
+          "id": "M4.1",
+          "title": "部门数据（10 部门 + 伦理）",
+          "status": "todo",
+          "owner": "content",
+          "prio": 1,
+          "deps": ["M1.1"],
+          "deliverable": "每部门等级/进度/当前动作/负责人",
+          "accept": "数据与 docs/01 的部门表一致"
+        },
+        {
+          "id": "M4.2",
+          "title": "部门面板接线",
+          "status": "todo",
+          "owner": "ui",
+          "prio": 1,
+          "deps": ["M4.1"],
+          "deliverable": "树、详情、两个动作按钮接数据",
+          "accept": "选中部门后详情来自 STATE；提请/下达写回状态"
+        },
+        {
+          "id": "M4.3",
+          "title": "O5 表决与权威/共识",
+          "status": "todo",
+          "owner": "engine",
+          "prio": 1,
+          "deps": ["M4.2"],
+          "deliverable": "13 席、4  bloc、表决通过条件",
+          "accept": "提案有票数结果；权威/共识按结果变化"
+        }
+      ]
+    },
+    {
+      "id": "M5",
+      "title": "阶段 5 · K 级情景链",
+      "status": "todo",
+      "children": [
+        {
+          "id": "M5.1",
+          "title": "七条链 JSON 化",
+          "status": "todo",
+          "owner": "content",
+          "prio": 1,
+          "deps": ["M1.3"],
+          "deliverable": "XK/ZK/CK/NK/Lifted Veil/ΩK/DBK 的节点与门槛",
+          "accept": "每条链有 5 阶段、2 个门槛、至少 1 个歧义征兆"
+        },
+        {
+          "id": "M5.2",
+          "title": "倒计时与不可逆点",
+          "status": "todo",
+          "owner": "engine",
+          "prio": 1,
+          "deps": ["M5.1"],
+          "deliverable": "进度 100→0 的时钟，60/30 触发门槛",
+          "accept": "不处置则按天下降；到 0 触发失败态"
+        },
+        {
+          "id": "M5.3",
+          "title": "征兆与歧义表接线",
+          "status": "todo",
+          "owner": "content",
+          "prio": 2,
+          "deps": ["M5.1"],
+          "deliverable": "征兆文本与可误判的解释分支",
+          "accept": "同一征兆在两条链里可指向不同结论"
+        },
+        {
+          "id": "M5.4",
+          "title": "结局判定（8 结局）",
+          "status": "todo",
+          "owner": "engine",
+          "prio": 1,
+          "deps": ["M5.2"],
+          "deliverable": "按四轴 + 隐藏轴判定结局",
+          "accept": "八种输入组合各自命中对应结局"
+        }
+      ]
+    },
+    {
+      "id": "M6",
+      "title": "阶段 6 · 元叙事与存档",
+      "status": "todo",
+      "children": [
+        {
+          "id": "M6.1",
+          "title": "觉醒度与第四面墙事件",
+          "status": "todo",
+          "owner": "content",
+          "prio": 2,
+          "deps": ["M1.2"],
+          "deliverable": "0–100 觉醒度与触发点",
+          "accept": "觉醒度到阈值时出现对应文本与选项"
+        },
+        {
+          "id": "M6.2",
+          "title": "存档上传与删除抵抗",
+          "status": "todo",
+          "owner": "engine",
+          "prio": 1,
+          "deps": ["M6.1"],
+          "deliverable": "上传/删除行为与抵抗规则",
+          "accept": "删除被拒绝时有明确的反制叙事；上传后可被读取"
+        },
+        {
+          "id": "M6.3",
+          "title": "信标与平行宇宙标识",
+          "status": "todo",
+          "owner": "engine",
+          "prio": 3,
+          "deps": ["M1.2"],
+          "deliverable": "存档内嵌信标，可识别同源世界线",
+          "accept": "同一档复制后信标相同；新档信标不同"
+        }
+      ]
+    },
+    {
+      "id": "M7",
+      "title": "阶段 7 · 美术与音频",
+      "status": "doing",
+      "children": [
+        {
+          "id": "M7.1",
+          "title": "头像第二批（部门负责人）",
+          "status": "todo",
+          "owner": "art",
+          "prio": 2,
+          "deps": ["M0.4"],
+          "deliverable": "6 张 96×96 SVG，同一套画法",
+          "accept": "28px 下可与第一批区分；每人一个识别物"
+        },
+        {
+          "id": "M7.2",
+          "title": "事件卡插画（按 tone 三类）",
+          "status": "todo",
+          "owner": "art",
+          "prio": 2,
+          "deps": [],
+          "deliverable": "日常/流程/关键 三套 250×62 卡面",
+          "accept": "三类在缩略图下可区分"
+        },
+        {
+          "id": "M7.3",
+          "title": "控件 1× 验收",
+          "status": "todo",
+          "owner": "art",
+          "prio": 1,
+          "deps": ["M0.4"],
+          "deliverable": "所有按钮在 1× 下的对比图",
+          "accept": "任一细节 <1.5px 的要么删掉、要么加粗"
+        },
+        {
+          "id": "M7.4",
+          "title": "音效与 BGM 占位",
+          "status": "todo",
+          "owner": "art",
+          "prio": 3,
+          "deps": [],
+          "deliverable": "点击/预警/归档三个音效",
+          "accept": "可开关；不自动播放"
+        }
+      ]
+    },
+    {
+      "id": "M8",
+      "title": "阶段 8 · 质量与发布",
+      "status": "todo",
+      "children": [
+        {
+          "id": "M8.1",
+          "title": "单测扩展到回合结算",
+          "status": "todo",
+          "owner": "qa",
+          "prio": 1,
+          "deps": ["M2.2"],
+          "deliverable": "engine-test.mjs 覆盖结算与抽卡",
+          "accept": "新增 ≥6 条用例，全部通过"
+        },
+        {
+          "id": "M8.2",
+          "title": "四主题回归截图",
+          "status": "todo",
+          "owner": "qa",
+          "prio": 2,
+          "deps": [],
+          "deliverable": "黑/白/蓝/红各一张主界面与面板",
+          "accept": "四张图无遮挡、无错位；白主题按钮不再是黑洞"
+        },
+        {
+          "id": "M8.3",
+          "title": "无障碍与 reduced-motion",
+          "status": "todo",
+          "owner": "ui",
+          "prio": 3,
+          "deps": [],
+          "deliverable": "prefers-reduced-motion 下关闭脉冲与动画",
+          "accept": "开启该系统设置后无动画，功能仍可用"
+        },
+        {
+          "id": "M8.4",
+          "title": "发布包与 SCP 条目",
+          "status": "todo",
+          "owner": "release",
+          "prio": 1,
+          "deps": ["M6.2", "M8.1"],
+          "deliverable": "发布包 + docs/08 的条目正文",
+          "accept": "LICENSING 与 ATTRIBUTION 齐全；条目勾选 CC BY-SA 3.0"
+        }
+      ]
+    }
+  ]
+}
