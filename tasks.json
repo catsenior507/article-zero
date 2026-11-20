@@ -703,7 +703,7 @@
           "status": "todo",
           "owner": "ui",
           "prio": 2,
-          "deps": ["M10.4", "M10.5"],
+          "deps": ["M10.4", "M10.5", "M10.8", "M10.9"],
           "deliverable": "站点表、金库估值与动作、七区域系数表",
           "accept": "三页可切换；金库变现与转移走确认；区域变化有箭头与高亮"
         },
@@ -713,9 +713,39 @@
           "status": "todo",
           "owner": "qa",
           "prio": 2,
-          "deps": ["M10.6"],
+          "deps": ["M10.6", "M10.10"],
           "deliverable": "54 回合模拟：金价、金库、区域漂移",
           "accept": "金库不会因金价下跌变成负资产；区域漂移不会让月支出翻倍"
+        },
+        {
+          "id": "M10.8",
+          "title": "区域特征数据：core / sectors / tensions",
+          "status": "todo",
+          "owner": "economy",
+          "prio": 1,
+          "deps": ["M10.1"],
+          "deliverable": "七个区域的十个硬指标与产业构成、五维张力",
+          "accept": "字段与 docs/17 §2 一致；derive 函数能从 core 算出七项系数，误差 <0.01"
+        },
+        {
+          "id": "M10.9",
+          "title": "正态漂移与核心位移",
+          "status": "todo",
+          "owner": "engine",
+          "prio": 1,
+          "deps": ["M10.8"],
+          "deliverable": "Box-Muller + φ=0.5 均值回归 + ±20% 夹逼 + seed 确定性",
+          "accept": "同 seed 两次读档结果一致；跑 24 个月无系数出界；结构性事件能改 core"
+        },
+        {
+          "id": "M10.10",
+          "title": "社会矛盾事件与后果",
+          "status": "todo",
+          "owner": "content",
+          "prio": 2,
+          "deps": ["M10.8", "M9.9"],
+          "deliverable": "罢工 / 骚乱 / 泄密 / 资产冻结四类事件与后果",
+          "accept": "张力 >0.55 时月触发率约 8%；四类事件各自改变站点状态或成本"
         }
       ]
     }
