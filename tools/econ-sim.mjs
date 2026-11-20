@@ -118,7 +118,7 @@ function drift(regions, month, policy) {
   }
 }
 
-const START = { cash: 120, debt: 0, veil: 78, consensus: 55, exposure: 0 };
+const START = { cash: 300, debt: 0, veil: 78, consensus: 55, exposure: 0 };
 
 function monthly(policy, state, regions, month) {
   let gdpIdx = 0, gdp0 = 0, wsum = 0;
@@ -129,9 +129,9 @@ function monthly(policy, state, regions, month) {
   }
   gdpIdx /= wsum; gdp0 /= wsum;
 
-  const stateBase = 40 + .3 * state.veil + .15 * state.consensus;
+  const stateBase = 57 + .3 * state.veil + .15 * state.consensus;
   let income = stateBase * Math.pow(gdpIdx / gdp0, .4);
-  income += 14.4 * Math.pow(regions.na.value.gdp / REGION_DEF.na.gdp, .6);
+  income += 19.2 * Math.pow(regions.na.value.gdp / REGION_DEF.na.gdp, .6);
   if (policy.monetize && month >= 24 && month < 60) income += 24;
 
   let personnel = 0, facility = 0, veil = 0, consumption = 0;
@@ -151,6 +151,8 @@ function monthly(policy, state, regions, month) {
   let expense = personnel + facility + consumption + veil + action + research + misc;
   if (policy.austerity && month >= 12) expense *= .86;
   if (policy.dev && month >= 12) expense += 1.5;
+  // 盈余扩张：现金超过 600 时，O5 会要求把钱花出去（新站点、扩编、研究）
+  if (policy.expand && state.cash > 600) expense += (state.cash - 600) * 0.03;
 
   const net = income - expense;
   state.cash += net;
@@ -196,7 +198,8 @@ const scenarios = [
   { label: 'A 被动：什么都不做', policy: {} },
   { label: 'B 紧缩：第 2 年起砍 14% 开支', policy: { austerity: true } },
   { label: 'C 紧缩 + 发展援助（亚/南美/非）', policy: { austerity: true, dev: true } },
-  { label: 'D 紧缩 + 异常变现（第 3–5 年）', policy: { austerity: true, monetize: true } }
+  { label: 'D 紧缩 + 异常变现（第 3–5 年）', policy: { austerity: true, monetize: true } },
+  { label: 'E 被动 + 盈余扩张（现金 >400 时加预算）', policy: { expand: true } }
 ];
 
 console.log('《第零条》十年经济模拟 · 120 个月 · 单次确定性运行\n');

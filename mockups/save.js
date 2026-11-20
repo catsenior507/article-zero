@@ -29,7 +29,7 @@ window.SAVE_DEFAULT = {
   },
 
   resources: {
-    funding: '$120',
+    funding: '$300',
     staff: 84,
     morale: 65,
     capacity: 28,
