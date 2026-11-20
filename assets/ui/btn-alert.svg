@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="76" height="28" viewBox="0 0 76 28">
+  <rect width="76" height="28" fill="#0A0D10"/>
+  <defs>
+    <linearGradient id="alertFace" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#D6A24A" stop-opacity=".34"/>
+      <stop offset=".55" stop-color="#D6A24A" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#D6A24A" stop-opacity=".11"/>
+    </linearGradient>
+    <linearGradient id="alertRim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".58"/>
+      <stop offset=".32" stop-color="#fff" stop-opacity=".24"/>
+      <stop offset=".54" stop-color="#000" stop-opacity=".24"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".72"/>
+    </linearGradient>
+    <linearGradient id="alertPlate" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#000" stop-opacity=".44"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".26"/>
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(1 1.5)" fill="#000" opacity=".5">
+    <path d="M9 1h59l7 13-7 13H9L2 14z"/>
+  </g>
+
+  <path d="M9 1h59l7 13-7 13H9L2 14z" fill="url(#alertFace)"/>
+  <path d="M9 1h59l7 13-7 13H9L2 14z" fill="none" stroke="#D6A24A" stroke-opacity=".42" stroke-width="2.6"/>
+  <path d="M9 1h59l7 13-7 13H9L2 14z" fill="none" stroke="url(#alertRim)" stroke-width="1.2"/>
+
+  <path d="M12 4.4h52.6l6 9.6-6 9.6H12L6.4 14z" fill="url(#alertPlate)" stroke="#000" stroke-opacity=".5"/>
+  <path d="M12.4 4.9h52l4.4 7" fill="none" stroke="#fff" stroke-opacity=".09"/>
+
+  <rect x="10.6" y="8.5" width="3" height="9" fill="#D6A24A" opacity=".85"/>
+  <rect x="10.6" y="8.5" width="3" height="9" fill="none" stroke="#000" stroke-opacity=".55" stroke-width=".8"/>
+  <rect x="11.4" y="9.2" width="1" height="7.6" fill="#fff" opacity=".28"/>
+
+  <circle cx="12.6" cy="2.9" r="1.2" fill="#000" opacity=".6"/>
+  <circle cx="12.6" cy="2.9" r=".65" fill="#D6A24A" opacity=".9"/>
+  <circle cx="63.4" cy="2.9" r="1.2" fill="#000" opacity=".6"/>
+  <circle cx="63.4" cy="2.9" r=".65" fill="#D6A24A" opacity=".9"/>
+  <circle cx="12.6" cy="25.1" r="1.2" fill="#000" opacity=".6"/>
+  <circle cx="12.6" cy="25.1" r=".65" fill="#D6A24A" opacity=".9"/>
+  <circle cx="63.4" cy="25.1" r="1.2" fill="#000" opacity=".6"/>
+  <circle cx="63.4" cy="25.1" r=".65" fill="#D6A24A" opacity=".9"/>
+
+  <path d="M67.6 10.4l2 3.6-2 3.6" fill="none" stroke="#D6A24A" stroke-opacity=".40" stroke-width="1.1"/>
+</svg>

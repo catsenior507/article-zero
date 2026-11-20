@@ -1,0 +1,13 @@
+# 验收与调试产物
+_qa/
+mockups/_tmp_*
+mockups/_crop-*
+mockups/debug.png
+mockups/fit-check.png
+mockups/_probe.txt
+*.tmp.png
+
+# 系统与依赖
+.DS_Store
+Thumbs.db
+node_modules/

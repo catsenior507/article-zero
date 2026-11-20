@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>第零条 · 主界面</title>
+<link rel="stylesheet" href="v2.css">
+</head>
+<body>
+
+<script src="../assets/icons.js"></script>
+
+<div class="screen">
+
+  <!-- ================= 地图 ================= -->
+  <div class="map">
+    <img class="worldmap" src="../assets/map/world-dots.png" alt="">
+    <svg class="mapv" id="mapv" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"></svg>
+
+    <div class="heat" style="left:1112px;top:255px;width:220px;height:160px"></div>
+    <div class="heat cold" style="left:853px;top:153px;width:180px;height:120px"></div>
+    <div class="heat" style="left:513px;top:348px;width:110px;height:80px"></div>
+
+    <div class="pin" style="left:549px;top:277px"><i></i>S-87</div>
+    <div class="pin" style="left:599px;top:312px"><i></i>S-19</div>
+    <div class="pin" style="left:943px;top:213px"><i></i>S-44</div>
+    <div class="pin" style="left:568px;top:388px"><i></i>S-106</div>
+    <div class="pin" style="left:1129px;top:359px"><i></i>AREA-27</div>
+    <div class="pin" style="left:1493px;top:365px"><i></i>S-95</div>
+    <div class="pin" style="left:1347px;top:423px"><i></i>S-Σ</div>
+    <div class="pin" style="left:960px;top:938px"><i></i>ANT-01</div>
+    <div class="pin hot" style="left:1222px;top:335px"><i></i>XK-17</div>
+
+    <div class="map-title">
+      <b>全球态势</b>
+      <small>GLOBAL SITUATION / 第 23 月</small>
+    </div>
+
+    <div class="map-modes">
+      <div class="mmode on" title="帷幕"><svg class="art"><use href="#frame-mode"></use></svg><svg class="ic"><use href="#i-veil"></use></svg></div>
+      <div class="mmode" title="收容"><svg class="art"><use href="#frame-mode"></use></svg><svg class="ic"><use href="#i-contain"></use></svg></div>
+      <div class="mmode" title="异常"><svg class="art"><use href="#frame-mode"></use></svg><svg class="ic"><use href="#i-anomaly"></use></svg></div>
+      <div class="mmode" title="政治"><svg class="art"><use href="#frame-mode"></use></svg><svg class="ic"><use href="#i-politics"></use></svg></div>
+      <div class="mmode" title="叙事"><svg class="art"><use href="#frame-mode"></use></svg><svg class="ic"><use href="#i-narrative"></use></svg></div>
+    </div>
+
+    <div class="legend">
+      <div><i style="background:rgba(194,74,63,.6)"></i>帷幕薄弱 / 热区</div>
+      <div><i style="background:rgba(90,169,180,.5)"></i>收容过载</div>
+      <div><i style="background:rgba(214,162,74,.6)"></i>站点</div>
+      <div><i style="background:transparent"></i>— 悬停大洲 / 大洋查看区域</div>
+    </div>
+  </div>
+
+  <!-- ================= 顶栏 ================= -->
+  <header class="topbar">
+    <svg class="barart" viewBox="0 0 1920 60" preserveAspectRatio="none"><path d="M0 0H1920V46L1898 60H22L0 46Z"/></svg>
+    <div class="brand">
+      <img class="seal-img" src="../assets/scp/logo_250.png" alt="SCP Foundation">
+      <div class="brand-txt">
+        <b>SCP 基金会</b>
+        <small>SECURE · CONTAIN · PROTECT</small>
+        <em>第零条 · O5-0</em>
+      </div>
+    </div>
+
+    <div class="cluster">
+      <em>物质</em>
+      <div class="metric"><svg class="ic mi"><use href="#i-funding"></use></svg><span class="k">经费</span><span class="v">$120</span><span class="d">▲+10</span></div>
+      <div class="metric"><svg class="ic mi"><use href="#i-staff"></use></svg><span class="k">编制</span><span class="v">84</span><span class="s">/100</span></div>
+      <div class="metric dim"><svg class="ic mi"><use href="#i-morale"></use></svg><span class="k">士气</span><span class="v">65</span></div>
+    </div>
+
+    <div class="cluster">
+      <em>异常</em>
+      <div class="metric"><svg class="ic mi"><use href="#i-capacity"></use></svg><span class="k">容量</span><span class="v">28</span><span class="s">/40</span></div>
+      <div class="metric"><svg class="ic mi"><use href="#i-contam"></use></svg><span class="k">污染</span><span class="v">08</span><span class="d neg">▲+2</span></div>
+      <div class="metric dim"><svg class="ic mi"><use href="#i-asset"></use></svg><span class="k">资产</span><span class="v">06</span></div>
+    </div>
+
+    <div class="cluster">
+      <em>政治</em>
+      <div class="metric"><svg class="ic mi"><use href="#i-veil"></use></svg><span class="k">帷幕</span><span class="v">78</span></div>
+      <div class="metric"><svg class="ic mi"><use href="#i-authority"></use></svg><span class="k">权威</span><span class="v">60</span></div>
+      <div class="metric"><svg class="ic mi"><use href="#i-consensus"></use></svg><span class="k">共识</span><span class="v">55</span></div>
+    </div>
+
+    <div class="classbar">
+      <span class="lvl">LEVEL 5</span>
+      <span class="eyes">O5-0 EYES ONLY</span>
+      <div class="bars">
+        <i style="height:7px"></i><i style="height:3px"></i><i style="height:6px"></i><i style="height:2px"></i>
+        <i style="height:7px"></i><i style="height:4px"></i><i style="height:2px"></i><i style="height:6px"></i>
+        <i style="height:3px"></i><i style="height:7px"></i><i style="height:2px"></i><i style="height:5px"></i>
+        <i style="height:3px"></i><i style="height:6px"></i>
+      </div>
+    </div>
+
+    <div class="timebox">
+      <div>
+        <div class="date">2049 · 03</div>
+        <div class="sub">任期 23 / 54</div>
+      </div>
+      <div class="gear"><svg class="art"><use href="#frame-gear"></use></svg><span>⚙</span></div>
+    </div>
+  </header>
+
+  <!-- ================= 预警横条 ================= -->
+  <div class="alertbar">
+    <svg class="barart" viewBox="0 0 1920 52" preserveAspectRatio="none"><path d="M18 0H1902L1920 18V34L1902 52H18L0 34V18Z"/></svg>
+    <span class="dot"></span>
+    <span class="lab">K 级预警</span>
+    <span class="code">XK-17</span>
+    <span class="name">人口普查</span>
+    <span class="tag">S2 显形</span>
+    <span class="scp">SCP-8███</span>
+    <div class="bar"><i></i></div>
+    <span class="num">55 / 100</span>
+    <span class="num">距不可逆 12</span>
+    <span class="abtn"><svg class="art"><use href="#frame-abtn"></use></svg><span>立案</span></span>
+    <span class="abtn primary"><svg class="art"><use href="#frame-abtn"></use></svg><span>处置</span></span>
+    <div class="right">
+      <span class="sep"></span>
+      <span class="al">帷幕<b>78</b><span class="neg"> ▼−2</span></span>
+      <span class="al">待决<b>04</b></span>
+      <span class="al">O5 例会<b>3 日</b></span>
+    </div>
+  </div>
+
+  <!-- ================= 右侧按钮群 ================= -->
+  <div class="rail">
+    <div class="rbtn" title="部门"><svg class="art"><use href="#frame-rail"></use></svg><svg class="ic"><use href="#i-dept"></use></svg></div>
+    <div class="rbtn" title="站点"><svg class="art"><use href="#frame-rail"></use></svg><svg class="ic"><use href="#i-site"></use></svg></div>
+    <div class="rbtn" title="特遣队"><svg class="art"><use href="#frame-rail"></use></svg><svg class="ic"><use href="#i-mtf"></use></svg></div>
+    <div class="rbtn" title="O5 议会"><svg class="art"><use href="#frame-rail"></use></svg><svg class="ic"><use href="#i-o5"></use></svg></div>
+    <div class="rbtn" title="科研"><svg class="art"><use href="#frame-rail"></use></svg><svg class="ic"><use href="#i-research"></use></svg><span class="badge amber">3</span></div>
+    <div class="rbtn" title="档案"><svg class="art"><use href="#frame-rail"></use></svg><svg class="ic"><use href="#i-archive"></use></svg><span class="badge">2</span></div>
+    <div class="rbtn" title="外交"><svg class="art"><use href="#frame-rail"></use></svg><svg class="ic"><use href="#i-diplomacy"></use></svg></div>
+  </div>
+
+  <!-- ================= 底栏 ================= -->
+  <footer class="bottom">
+    <svg class="barart" viewBox="0 0 1920 96" preserveAspectRatio="none">
+      <path d="M0 30L30 0H110L128 18H1440L1458 6H1890L1920 30V96H0Z"/>
+      <path d="M128 18H1440" fill="none" stroke="var(--line)" opacity=".7"/>
+      <path d="M1436 92C1462 92 1468 40 1494 40" fill="none" stroke="var(--dim)" stroke-dasharray="3 4" opacity=".7"/>
+      <g fill="var(--line)" opacity=".85">
+        <circle cx="44" cy="80" r="2.2"/><circle cx="1876" cy="80" r="2.2"/>
+        <circle cx="1430" cy="88" r="1.8"/><circle cx="1462" cy="88" r="1.8"/>
+      </g>
+    </svg>
+    <div class="hazard"></div>
+    <div class="vent"></div>
+    <div class="deck-code">DECK 04 · BAY 02</div>
+    <div class="doors">
+      <div class="door evdoor on" title="待决事件 · 点击展开">
+        <svg class="art"><use href="#frame-door"></use></svg>
+        <svg class="ic"><use href="#i-seal"></use></svg>
+        <span>待决</span><b class="cnt">04</b>
+        <i class="dot unread"></i>
+      </div>
+      <div class="door" title="科研">
+        <svg class="art"><use href="#frame-door"></use></svg>
+        <svg class="ic"><use href="#i-research"></use></svg>
+        <span>科研</span><b class="cnt">3</b>
+      </div>
+      <div class="door" title="项目">
+        <svg class="art"><use href="#frame-door"></use></svg>
+        <svg class="ic"><use href="#i-capacity"></use></svg>
+        <span>项目</span>
+      </div>
+      <div class="door" title="外交 / GoI">
+        <svg class="art"><use href="#frame-door"></use></svg>
+        <svg class="ic"><use href="#i-diplomacy"></use></svg>
+        <span>外交</span>
+      </div>
+      <div class="door" title="档案">
+        <svg class="art"><use href="#frame-door"></use></svg>
+        <svg class="ic"><use href="#i-archive"></use></svg>
+        <span>档案</span><b class="cnt">2</b>
+      </div>
+      <div class="door" title="统计">
+        <svg class="art"><use href="#frame-door"></use></svg>
+        <svg class="ic"><use href="#i-morale"></use></svg>
+        <span>统计</span>
+      </div>
+    </div>
+
+    <div class="pips">●●●<span class="off">○</span><b>4 / 4</b></div>
+    <div class="stamp"><svg class="art"><use href="#frame-stamp"></use></svg><svg class="ic"><use href="#i-seal"></use></svg><span>归档本月</span></div>
+  </footer>
+
+  <!-- ================= 待决事件（事件门的展开态） ================= -->
+  <section class="evpanel">
+    <div class="evh"><b>待决事件</b><span class="n">04 项 · 1 项 6 回合内过期</span><span class="x">×</span></div>
+    <div class="evlist">
+      <div class="evrow unread"><i class="bar k"></i><span class="ty">日常 · 异常</span><span class="ti">食堂的第四把椅子</span><span class="tm">06</span></div>
+      <div class="evrow unread"><i class="bar p"></i><span class="ty">流程 · 政治</span><span class="ti">O5 表决：第 14 号提案</span><span class="tm">03</span></div>
+      <div class="evrow"><i class="bar"></i><span class="ty">流程 · 帷幕</span><span class="ti">记忆删除预算超额</span><span class="tm">12</span></div>
+      <div class="evrow"><i class="bar"></i><span class="ty">日常 · 人事</span><span class="ti">清洁工的加班单</span><span class="tm">—</span></div>
+      <div class="evrow"><i class="bar"></i><span class="ty">日常 · 人事</span><span class="ti">新人的第一课</span><span class="tm">09</span></div>
+      <div class="evrow"><i class="bar k"></i><span class="ty">日常 · 异常</span><span class="ti">停尸房的编号</span><span class="tm">04</span></div>
+    </div>
+    <div class="evf">
+      <span class="g"><i class="dot unread"></i>2 项未读</span>
+      <span class="g"><i class="dot expiring"></i>1 项已读 · 即将过期</span>
+      <span class="x2">再点事件门收起</span>
+    </div>
+  </section>
+
+  <div class="toast">
+    <span class="mono" style="color:var(--danger)">▲</span>
+    <span><b>SITE-44</b> 报告一次未登记的人员变动。</span>
+  </div>
+
+  <div class="grain"></div>
+</div>
+
+<script src="../assets/map/world-data.js"></script>
+<script src="ui.js"></script>
+<script>
+(function () {
+  var q = location.search;
+
+  // 主题：?theme=black|white|blue|red
+  var t = (q.match(/theme=([a-z]+)/) || [])[1] || 'black';
+  document.body.classList.add('theme-' + t);
+
+  // 地图悬停区
+  var NS = 'http://www.w3.org/2000/svg';
+  var svg = document.getElementById('mapv');
+  // 垫在最底层的透明矩形：接住"谁也不属于"的水面（岛屿之间、近岸、极区）
+  var fbRect = document.createElementNS(NS, 'rect');
+  fbRect.setAttribute('x', 0); fbRect.setAttribute('y', 0);
+  fbRect.setAttribute('width', 1920); fbRect.setAttribute('height', 1080);
+  fbRect.setAttribute('fill', 'transparent');
+  fbRect.setAttribute('pointer-events', 'all');
+  svg.appendChild(fbRect);
+  function d(polys) {
+    var s = '';
+    polys.forEach(function (poly) {
+      poly.forEach(function (pt, i) {
+        var p = WORLD.project(pt[0], pt[1]);
+        s += (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1);
+      });
+      s += 'Z';
+    });
+    return s;
+  }
+  function add(name, label, polys, sea) {
+    var g = document.createElementNS(NS, 'g');
+    g.setAttribute('class', 'region ' + (sea ? 'sea' : 'land'));
+    g.setAttribute('data-name', name);
+    var p = document.createElementNS(NS, 'path');
+    p.setAttribute('class', 'mask');
+    p.setAttribute('d', d(polys));
+    g.appendChild(p);
+    if (label) {                       // 南极洲 / 北冰洋贴边，不标字，只保留悬停
+      var tx = document.createElementNS(NS, 'text');
+      var q2 = WORLD.project(label[0], label[1]);
+      tx.setAttribute('x', q2[0].toFixed(1));
+      tx.setAttribute('y', q2[1].toFixed(1));
+      tx.textContent = name;
+      g.appendChild(tx);
+    }
+    svg.appendChild(g);
+  }
+  WORLD.OCEANS.forEach(function (o) { add(o.name, o.label, o.polys, true); });
+  Object.keys(WORLD.CONTINENTS).forEach(function (k) {
+    var c = WORLD.CONTINENTS[k];
+    add(c.name, c.label, c.polys, false);
+  });
+
+  // 空白兜底：鼠标落在没有掩膜的水面上时，点亮"最近的那块"
+  (function () {
+    var NE = WORLD.NEAREST;
+    if (!NE) return;
+    var byName = {};
+    Array.prototype.forEach.call(svg.querySelectorAll('.region'), function (g) {
+      byName[g.getAttribute('data-name')] = g;
+    });
+    var cur = null;
+    function force(name) {
+      var g = name ? byName[name] : null;
+      if (g === cur) return;
+      if (cur) cur.classList.remove('force');
+      cur = g || null;
+      if (cur) cur.classList.add('force');
+    }
+    fbRect.addEventListener('mousemove', function (e) {
+      var r = svg.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width * 1920;
+      var y = (e.clientY - r.top) / r.height * 1080;
+      var gx = Math.min(NE.gw - 1, Math.max(0, Math.floor(x / (1920 / NE.gw))));
+      var gy = Math.min(NE.gh - 1, Math.max(0, Math.floor(y / (1080 / NE.gh))));
+      var ch = NE.cells.charCodeAt(gy * NE.gw + gx);
+      force(ch === 46 ? null : NE.keys[ch - 65]);      // 46 = '.'
+    });
+    fbRect.addEventListener('mouseleave', function () { force(null); });
+  })();
+
+  // 强制高亮：?hover=亚洲
+  var m = q.match(/hover=([^&]+)/);
+  if (m) {
+    var target = decodeURIComponent(m[1]);
+    Array.prototype.forEach.call(svg.querySelectorAll('.region'), function (g) {
+      if (g.getAttribute('data-name') === target) g.classList.add('force');
+    });
+  }
+
+  // 自适应缩放
+  var scr = document.querySelector('.screen');
+  if (q.indexOf('nofit') >= 0) { scr.classList.add('nofit'); return; }
+  function fit() {
+    var s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    document.documentElement.style.setProperty('--s', String(s));
+  }
+  fit();
+  window.addEventListener('resize', fit);
+})();
+</script>
+</body>
+</html>

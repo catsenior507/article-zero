@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>地图生成器已迁移</title>
+<style>
+  body{margin:0;height:100vh;display:flex;align-items:center;justify-content:center;
+       background:#0A0D10;color:#C8D0D8;font:14px/1.9 "Microsoft YaHei",sans-serif}
+  .box{max-width:640px;padding:32px 36px;border:1px solid #2B333C;background:#11151A}
+  h1{margin:0 0 8px;font-size:16px;letter-spacing:.18em;color:#D6A24A}
+  code{background:#0A0D10;border:1px solid #2B333C;padding:2px 6px;font-family:Consolas,monospace;color:#C8D0D8}
+  p{margin:10px 0}
+  .dim{color:#6C7A87;font-size:12px}
+</style>
+</head>
+<body>
+<div class="box">
+  <h1>这个生成器已经不用了</h1>
+  <p>旧版在这里用 Canvas + 手写的几十个经纬度点画地图，海岸线是错的
+     （南美西岸、东非、东南亚尤其明显）。现在改为从 <b>Natural Earth 1:110m</b> 的真实数据生成：</p>
+  <p><code>assets/map/build-world.py</code></p>
+  <p>跑一次会同时更新 <code>world-dots.png</code>（点阵 + 海岸线）和
+     <code>world-data.js</code>（悬停掩膜 + 标签）。投影仍是 Kavrayskiy VII
+     （SCALE=335, CX=960, CY=540），所以界面里手写的 pin 坐标不用动。</p>
+  <p class="dim">数据来源与授权见 <code>assets/map/data/README.md</code>（Natural Earth，公有领域）。</p>
+</div>
+</body>
+</html>

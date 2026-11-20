@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="124" height="40" viewBox="0 0 124 40">
+  <rect width="124" height="40" fill="#0A0D10"/>
+  <defs>
+    <linearGradient id="tabFace" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8A97A3" stop-opacity=".26"/>
+      <stop offset="1" stop-color="#8A97A3" stop-opacity=".08"/>
+    </linearGradient>
+  </defs>
+  <path d="M12 3h112v36H3V15z" fill="#000" opacity=".4"/>
+  <path d="M12 1h112v38H1V15z" fill="url(#tabFace)" stroke="#8A97A3" stroke-width="1.1"/>
+  <path d="M13 3h110" stroke="#fff" stroke-opacity=".15"/>
+  <path d="M6 8h112" stroke="#000" stroke-opacity=".35"/>
+  <path d="M2 37.5h120" stroke="#8A97A3" stroke-opacity=".6"/>
+  <circle cx="8" cy="22" r="1.4" fill="#000" opacity=".5"/>
+  <circle cx="7.6" cy="21.6" r=".9" fill="#8A97A3" opacity=".8"/>
+</svg>

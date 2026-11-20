@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 46 46">
+  <rect width="46" height="46" fill="#0A0D10"/>
+  <defs>
+    <linearGradient id="railFace" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8A97A3" stop-opacity=".34"/>
+      <stop offset=".55" stop-color="#8A97A3" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#8A97A3" stop-opacity=".10"/>
+    </linearGradient>
+    <linearGradient id="railRim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".58"/>
+      <stop offset=".30" stop-color="#fff" stop-opacity=".28"/>
+      <stop offset=".52" stop-color="#000" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".72"/>
+    </linearGradient>
+    <linearGradient id="railWell" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#000" stop-opacity=".62"/>
+      <stop offset=".62" stop-color="#000" stop-opacity=".30"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".42"/>
+    </linearGradient>
+    <radialGradient id="railHalo" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#8A97A3" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#8A97A3" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <g transform="translate(.9 1.4)" fill="#000" opacity=".5">
+    <path d="M12 1h22l11 11v22L34 45H12L1 34V12z"/>
+  </g>
+
+  <path d="M12 1h22l11 11v22L34 45H12L1 34V12z" fill="url(#railFace)"/>
+  <path d="M12 1h22l11 11v22L34 45H12L1 34V12z" fill="none" stroke="#8A97A3" stroke-opacity=".42" stroke-width="3"/>
+  <path d="M12 1h22l11 11v22L34 45H12L1 34V12z" fill="none" stroke="url(#railRim)" stroke-width="1.3"/>
+
+  <path d="M1.6 17h3.6v12H1.6z" fill="#000" opacity=".62"/>
+  <path d="M1.6 17h3.6v12H1.6z" fill="none" stroke="#8A97A3" stroke-opacity=".55" stroke-width=".8"/>
+  <path d="M3.4 19v8" stroke="#8A97A3" stroke-opacity=".38" stroke-width=".8"/>
+
+  <path d="M13.9 5.6h18.2l8.3 8.3v18.2l-8.3 8.3H13.9l-8.3-8.3V13.9z" fill="url(#railWell)" stroke="#000" stroke-opacity=".55"/>
+  <path d="M13.9 14.2v17.4l7.6 7.6" fill="none" stroke="#fff" stroke-opacity=".07"/>
+  <circle cx="23" cy="21.6" r="10.4" fill="url(#railHalo)"/>
+
+  <g>
+    <circle cx="12" cy="12" r="2.3" fill="#000" opacity=".6"/>
+    <circle cx="12" cy="12" r="2.3" fill="none" stroke="#8A97A3" stroke-opacity=".6" stroke-width=".8"/>
+    <path d="M10.7 13.3l2.6-2.6" stroke="#000" stroke-opacity=".7" stroke-width=".9"/>
+    <circle cx="34" cy="12" r="2.3" fill="#000" opacity=".6"/>
+    <circle cx="34" cy="12" r="2.3" fill="none" stroke="#8A97A3" stroke-opacity=".6" stroke-width=".8"/>
+    <path d="M32.7 13.3l2.6-2.6" stroke="#000" stroke-opacity=".7" stroke-width=".9"/>
+    <circle cx="12" cy="34" r="2.3" fill="#000" opacity=".6"/>
+    <circle cx="12" cy="34" r="2.3" fill="none" stroke="#8A97A3" stroke-opacity=".6" stroke-width=".8"/>
+    <path d="M10.7 35.3l2.6-2.6" stroke="#000" stroke-opacity=".7" stroke-width=".9"/>
+    <circle cx="34" cy="34" r="2.3" fill="#000" opacity=".6"/>
+    <circle cx="34" cy="34" r="2.3" fill="none" stroke="#8A97A3" stroke-opacity=".6" stroke-width=".8"/>
+    <path d="M32.7 35.3l2.6-2.6" stroke="#000" stroke-opacity=".7" stroke-width=".9"/>
+  </g>
+
+  <rect x="16" y="33.2" width="14" height="4.8" fill="#000" opacity=".62"/>
+  <rect x="16" y="33.2" width="14" height="4.8" fill="none" stroke="#8A97A3" stroke-opacity=".35" stroke-width=".8"/>
+  <path d="M16.5 33.7h13" stroke="#fff" stroke-opacity=".08"/>
+</svg>
