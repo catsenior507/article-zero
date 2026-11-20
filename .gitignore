@@ -7,6 +7,9 @@ mockups/fit-check.png
 mockups/_probe.txt
 *.tmp.png
 
+# 时间轴验收截图（本地渲染）
+mockups/01-time*.png
+
 # 系统与依赖
 .DS_Store
 Thumbs.db

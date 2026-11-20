@@ -1,0 +1,69 @@
+/* 时间轴 + 测试控制台（新增层，不改 v2.css） */
+
+.timerail{position:absolute;left:400px;top:118px;width:860px;height:48px;z-index:34;
+  display:flex;align-items:center;gap:12px;padding:0 18px;
+  font-family:Consolas,"JetBrains Mono",monospace}
+.railart{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.railart path{fill:var(--bar1);stroke:var(--line);stroke-width:1.2}
+.timerail>*:not(.railart){position:relative;z-index:1}
+
+.tplay{width:32px;height:32px;flex:none;display:flex;align-items:center;justify-content:center;
+  background:var(--btnbg);border:1px solid var(--line);color:var(--muted);
+  font:12px/1 Consolas;cursor:pointer;
+  clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px)}
+.tplay:hover,.tplay.on{color:var(--accent);border-color:var(--accent)}
+
+.tspeeds{display:flex;gap:2px;flex:none}
+.tspeeds button{width:34px;height:24px;background:none;border:1px solid var(--line);
+  color:var(--muted);font:10px/1 Consolas;cursor:pointer;letter-spacing:.04em}
+.tspeeds button:hover{color:var(--text);border-color:var(--accent)}
+.tspeeds button.on{color:var(--accent);border-color:var(--accent);
+  background:color-mix(in srgb,var(--accent) 14%,transparent)}
+
+.tdate{display:flex;align-items:baseline;gap:3px;flex:none;font:12px/1 Consolas;color:var(--muted)}
+.tdate b{font-weight:600;color:var(--text);letter-spacing:.04em}
+.tdate i{font-style:normal;color:var(--dim)}
+.tdate em{font-style:normal;font-size:17px;font-weight:700;color:var(--accent);letter-spacing:.02em}
+
+.ttrack{position:relative;flex:1;height:12px;min-width:160px;background:var(--track);
+  border:1px solid var(--line-soft);overflow:hidden}
+.ttrack .tticks i{position:absolute;top:2px;width:1px;height:6px;background:var(--line);opacity:.55}
+.ttrack .tticks i.y{height:8px;top:1px;opacity:.9}
+.tfill{position:absolute;left:0;top:0;bottom:0;background:color-mix(in srgb,var(--accent) 26%,transparent)}
+.thead{position:absolute;top:-1px;bottom:-1px;width:2px;background:var(--accent);
+  box-shadow:0 0 7px color-mix(in srgb,var(--accent) 55%,transparent)}
+
+.tnext{flex:none;font:9px/1 Consolas;color:var(--dim);letter-spacing:.12em;white-space:nowrap}
+.tnext b{color:var(--accent);font-size:12px;margin-left:4px}
+
+/* ---------- 控制台 ---------- */
+.console{position:absolute;left:24px;top:196px;width:420px;max-height:640px;z-index:60;
+  display:none;flex-direction:column;background:var(--panel);border:1px solid var(--line);
+  box-shadow:var(--shadow);color:var(--text);
+  clip-path:polygon(0 12px,12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%)}
+.console.open{display:flex}
+.ch{display:flex;align-items:center;gap:8px;padding:11px 13px;border-bottom:1px solid var(--line);
+  font:11px/1 Consolas;letter-spacing:.14em}
+.ch b{color:var(--accent);font-weight:600}
+.ch span{color:var(--dim);font-size:8px;letter-spacing:.18em}
+.ch .cx{margin-left:auto;cursor:pointer;color:var(--muted);padding:0 4px;font-size:14px}
+.ch .cx:hover{color:var(--accent)}
+.cbody{flex:1;min-height:0;padding:11px 13px;overflow:auto;font:11px/1.5 Consolas}
+.csec{margin-bottom:13px}
+.csec>em{display:block;font-style:normal;color:var(--dim);font-size:8px;letter-spacing:.2em;margin-bottom:7px}
+.crow{display:flex;align-items:center;flex-wrap:wrap;gap:5px;margin-bottom:6px}
+.crow .cd{color:var(--accent);font-size:12px;margin-right:4px}
+.cbtn{background:var(--btnbg);border:1px solid var(--line);color:var(--muted);
+  font:10px/1 Consolas;padding:5px 8px;cursor:pointer;letter-spacing:.04em}
+.cbtn:hover{border-color:var(--accent);color:var(--accent)}
+.cbtn.on{color:var(--accent);border-color:var(--accent)}
+.cev{display:flex;align-items:center;gap:7px;padding:5px 0;border-bottom:1px dashed var(--line-soft)}
+.cev .t{flex:1;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cev .g{color:var(--dim);font-size:9px;flex:none}
+.cev .go{flex:none;padding:4px 7px}
+.clog{border-top:1px solid var(--line);padding:8px 13px;max-height:110px;overflow:auto;
+  font:10px/1.7 Consolas;color:var(--dim)}
+.clog b{color:var(--accent);font-weight:400}
+
+/* 时间轴占用了顶部中央，提示条下移 */
+.toast{top:182px}
