@@ -1,0 +1,18 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96">
+  <defs>
+    <mask id="m">
+      <rect width="96" height="96" fill="#000"/>
+      <path d="M14 96L18 80C22 73 34 70 48 70C62 70 74 73 78 80L82 96Z" fill="#fff"/>
+      <path d="M42 52h12v20H42z" fill="#fff"/>
+      <path d="M32 32c0-13 7-21 16-21s16 8 16 21c0 9-6 18-16 20-10-2-16-11-16-20z" fill="#fff"/>
+      <path d="M33 27c0-10 6-16 15-16s15 6 15 16v4H33z" fill="#fff"/>
+      <rect x="36" y="31" width="24" height="5" fill="#000"/>
+      <rect x="43" y="44" width="10" height="1.6" fill="#000"/>
+      <path d="M38 68c6 4 14 4 20 0" stroke="#000" stroke-width="1.2" fill="none"/>
+    </mask>
+  </defs>
+  <rect width="96" height="96" fill="#A9B4BF" mask="url(#m)"/>
+  <path d="M36 46c3 4 7 6 12 6s9-2 12-6" fill="none" stroke="#E3E9EE" stroke-width=".9" opacity=".45"/>
+  <rect x="36" y="31" width="24" height="5" fill="#D6A24A" opacity=".92"/>
+  <rect x="62" y="79" width="9" height="3" fill="#D6A24A" opacity=".8"/>
+</svg>

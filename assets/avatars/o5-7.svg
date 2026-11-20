@@ -1,0 +1,24 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96">
+  <defs>
+    <mask id="m">
+      <rect width="96" height="96" fill="#000"/>
+      <path d="M14 96L18 80C22 73 34 70 48 70C62 70 74 73 78 80L82 96Z" fill="#fff"/>
+      <path d="M42 52h12v20H42z" fill="#fff"/>
+      <path d="M34 32c0-12 6-20 14-20s14 8 14 20c0 9-5 17-14 19-9-2-14-10-14-19z" fill="#fff"/>
+      <path d="M34 29c1-11 7-17 14-17 6 0 11 4 13 11-5-2-9-1-13 2-5-2-9-1-14 4z" fill="#fff"/>
+      <rect x="38" y="34" width="6.5" height="2.2" fill="#000"/>
+      <rect x="51.5" y="34" width="6.5" height="2.2" fill="#000"/>
+      <path d="M47 37v5h2.5" stroke="#000" stroke-width="1.1" fill="none"/>
+      <rect x="44" y="45" width="8" height="1.5" fill="#000"/>
+      <path d="M44 68l4 8 4-8" fill="#000"/>
+      <path d="M55 70l3 12" stroke="#000" stroke-width="2" fill="none"/>
+    </mask>
+  </defs>
+  <rect width="96" height="96" fill="#A9B4BF" mask="url(#m)"/>
+  <g fill="none" stroke="#D6A24A" stroke-width="1.5">
+    <circle cx="41.2" cy="35" r="4.4"/>
+    <circle cx="54.8" cy="35" r="4.4"/>
+    <path d="M45.6 35h4.4"/>
+  </g>
+  <rect x="55" y="82" width="3" height="8" fill="#D6A24A" opacity=".8"/>
+</svg>

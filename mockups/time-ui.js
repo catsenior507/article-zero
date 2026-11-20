@@ -18,9 +18,12 @@
   if (!scr) return;
 
   var pad = Engine.pad;
+  var SAVE = window.SAVE_DEFAULT || null;
   var engine = Engine.create({
-    start: '2026-11-20', turns: 54, msPerDay: 400,
-    seed: ['d01', 'p01', 'd02', 'd03']      // 与静态稿的 4 项待决对齐
+    start: (SAVE && SAVE.game && SAVE.game.date) || '2026-11-20',
+    turns: (SAVE && SAVE.game && SAVE.game.turns) || 54,
+    msPerDay: 400,
+    seed: (SAVE && SAVE.world && SAVE.world.pending) || []
   });
   var catalog = window.EVENT_CATALOG || [];
   var byId = {};
@@ -211,9 +214,53 @@
   engine.on('reset', function () { log('重置到 ' + engine.start); render(); });
   engine.on('schedule', render);
 
+  /* ================= 开局档案 → 界面 ================= */
+  function applySave() {
+    if (!SAVE) return;
+    var w = SAVE.world || {}, r = SAVE.resources || {};
+
+    // 无 K 级：预警条切常态，帷幕与站点数来自存档
+    var bar = document.querySelector('.alertbar');
+    if (bar && !w.threat) {
+      bar.classList.add('no-threat');
+      var note = bar.querySelector('.inote');
+      if (note && w.veil) note.textContent = (w.sites || 0) + ' 个站点在线 · 帷幕 ' + w.veil.value + ' · ' + w.veil.state;
+      var al = bar.querySelectorAll('.right .al');
+      if (al[0] && w.veil) {
+        var vb = al[0].querySelector('b'); if (vb) vb.textContent = w.veil.value;
+        var neg = al[0].querySelector('.neg'); if (neg) neg.style.display = 'none';
+      }
+    }
+
+    // 资源
+    var map = { '经费': 'funding', '编制': 'staff', '士气': 'morale', '容量': 'capacity',
+                '污染': 'contam', '资产': 'asset', '帷幕': 'veil', '权威': 'authority', '共识': 'consensus' };
+    Array.prototype.forEach.call(document.querySelectorAll('.metric'), function (m) {
+      var k = m.querySelector('.k'); if (!k) return;
+      var key = map[k.textContent.trim()];
+      if (key && r[key] != null) { var v = m.querySelector('.v'); if (v) v.textContent = r[key]; }
+    });
+
+    // 待决面板只显示存档里有的条目
+    var ids = (w.pending || []).slice();
+    var byTitle = {};
+    catalog.forEach(function (e) { byTitle[e.title] = e.id; });
+    Array.prototype.forEach.call(document.querySelectorAll('.evpanel .evrow'), function (row) {
+      var ti = row.querySelector('.ti'); if (!ti) return;
+      var id = byTitle[ti.textContent.trim()];
+      if (id && ids.indexOf(id) < 0) row.style.display = 'none';
+    });
+    var en = document.querySelector('.evh .n');
+    if (en) en.textContent = pad(ids.length) + ' 项';
+
+    // 提示条
+    if (toastMsg && w.notice) toastMsg.innerHTML = '<b>通知</b> ' + w.notice;
+  }
+
   /* ================= 启动 ================= */
   engine.schedule('s44', 12);          // 演示：12 天后自动来一条 SITE-44
   render();
+  applySave();
 
   // 归档本月 = 跳到下月 1 号（与时间轴同步）
   var stamp = document.querySelector('.stamp');
@@ -237,5 +284,17 @@
       engine.tick(dt);
       requestAnimationFrame(loop);
     })(last);
+  }
+
+  // 布局标定：?rects=1 把关键元素的舞台坐标写进 <title>，便于 --dump-dom 读取
+  if (q.indexOf('rects') >= 0) {
+    setTimeout(function () {
+      var out = {};
+      ['.timebox', '.rail', '.map-modes', '.map-title', '.toast', '.timerail'].forEach(function (s) {
+        var el = document.querySelector(s);
+        if (el) out[s] = [el.offsetLeft, el.offsetTop, el.offsetWidth, el.offsetHeight];
+      });
+      document.title = 'RECTS ' + JSON.stringify(out);
+    }, 600);
   }
 })();

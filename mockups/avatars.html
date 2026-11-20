@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>头像素材 · 1× 检查</title>
+<style>
+body{margin:0;background:#0A0D10;color:#C8D0D8;font-family:Consolas,"Microsoft YaHei",monospace;padding:28px}
+h1{font-size:17px;letter-spacing:.24em;font-weight:600;margin:0 0 6px}
+.note{color:#6C7A87;font-size:11px;margin-bottom:22px;line-height:1.7}
+.grid{display:flex;flex-wrap:wrap;gap:16px}
+.card{width:196px;background:#11151A;border:1px solid #2B333C;padding:14px}
+.card.paper{background:#F3F0E8;border-color:#CFC7B6;color:#1E2226}
+.pv{display:flex;align-items:flex-end;gap:12px;margin-bottom:10px}
+.pv img{display:block}
+.big{width:96px;height:96px}
+.mid{width:40px;height:40px}
+.sm{width:28px;height:28px}
+.nm{font-size:12px;letter-spacing:.08em}
+.cd{font-size:9px;color:#6C7A87;margin-top:4px}
+</style>
+</head>
+<body>
+<h1>头像 / AVATARS</h1>
+<div class="note">96 / 40 / 28 三档；每张图上下各一张卡（深色 / 纸色），检查 1× 下的辨识度与两侧通用性。</div>
+<div class="grid" id="g"></div>
+<script>
+var list = [
+  ['o5-1', 'O5-1 · 议长', 'O5 COUNCIL'],
+  ['o5-7', 'O5-7 · 审计', 'O5 COUNCIL'],
+  ['dir-research', '研究主管', 'RESEARCH'],
+  ['ethics-chair', '伦理主席', 'ETHICS'],
+  ['mtf-captain', '特遣队长', 'MTF'],
+  ['adjutant', '管理员副官', 'ADJUTANT']
+];
+var g = document.getElementById('g');
+list.forEach(function (a) {
+  ['', ' paper'].forEach(function (cls) {
+    var d = document.createElement('div');
+    d.className = 'card' + cls;
+    d.innerHTML = '<div class="pv">' +
+      '<img class="big" src="../assets/avatars/' + a[0] + '.svg">' +
+      '<img class="mid" src="../assets/avatars/' + a[0] + '.svg">' +
+      '<img class="sm" src="../assets/avatars/' + a[0] + '.svg">' +
+      '</div><div class="nm"></div><div class="cd"></div>';
+    d.querySelector('.nm').textContent = a[1];
+    d.querySelector('.cd').textContent = a[2];
+    g.appendChild(d);
+  });
+});
+</script>
+</body>
+</html>

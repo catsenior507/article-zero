@@ -65,5 +65,28 @@
   font:10px/1.7 Consolas;color:var(--dim)}
 .clog b{color:var(--accent);font-weight:400}
 
-/* 时间轴占用了顶部中央，提示条下移 */
-.toast{top:182px}
+/* 时间轴移到右上角日期栏下方；右侧导航与部门面板整体下移让位 */
+.timerail{left:auto;right:20px;top:116px;width:720px;height:44px}
+.rail{top:168px}
+.panel{top:168px}
+
+/* 开局常态：无 K 级预警 */
+.alertbar .idle{display:none;flex:1;align-items:center;gap:14px}
+.alertbar.no-threat .idle{display:flex}
+.alertbar.no-threat > .dot,
+.alertbar.no-threat > .lab,
+.alertbar.no-threat > .code,
+.alertbar.no-threat > .name,
+.alertbar.no-threat > .tag,
+.alertbar.no-threat > .scp,
+.alertbar.no-threat > .bar,
+.alertbar.no-threat > .num,
+.alertbar.no-threat > .abtn{display:none}
+.alertbar .idot{width:7px;height:7px;border-radius:50%;background:var(--info);flex:none;
+  box-shadow:0 0 8px color-mix(in srgb,var(--info) 60%,transparent)}
+.alertbar .ilab{font-size:9px;letter-spacing:.26em;color:var(--muted)}
+.alertbar .iname{font-size:14px;font-weight:600;letter-spacing:.04em;color:var(--text)}
+.alertbar .itag{font:9px/1 Consolas;padding:2px 6px;letter-spacing:.12em;color:var(--info);
+  border:1px solid color-mix(in srgb,var(--info) 45%,var(--line))}
+.alertbar .inote{font:10px/1 Consolas;color:var(--muted);letter-spacing:.06em}
+

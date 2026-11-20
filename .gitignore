@@ -9,6 +9,9 @@ mockups/_probe.txt
 
 # 时间轴验收截图（本地渲染）
 mockups/01-time*.png
+mockups/01-save*.png
+mockups/02-save.png
+mockups/avatars.png
 
 # 系统与依赖
 .DS_Store
