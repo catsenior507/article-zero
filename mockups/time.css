@@ -71,6 +71,7 @@
 .panel{top:168px}
 
 /* 开局常态：无 K 级预警 */
+.alertbar.no-threat .barart path{fill:var(--bar1);stroke:var(--line)}
 .alertbar .idle{display:none;flex:1;align-items:center;gap:14px}
 .alertbar.no-threat .idle{display:flex}
 .alertbar.no-threat > .dot,
