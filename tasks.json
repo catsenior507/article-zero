@@ -973,6 +973,53 @@
         { "id": "M15.9", "title": "测试独立性", "status": "todo", "owner": "qa", "prio": 2, "deps": [], "deliverable": "engine-test 每条用例独立 create()", "accept": "单条用例可单独跑，不依赖前一条的日期" },
         { "id": "M15.10", "title": "资源引用与符号检查", "status": "todo", "owner": "qa", "prio": 3, "deps": [], "deliverable": "src/href/#symbol 全量解析脚本", "accept": "0 个悬空引用；9 个母版 viewBox 与 sprite 一致" }
       ]
+    },
+    {
+      "id": "M16",
+      "title": "阶段 16 · 部门等级与效果",
+      "status": "doing",
+      "children": [
+        {
+          "id": "M16.1",
+          "title": "部门等级效果表（含末日学部）",
+          "status": "done",
+          "owner": "economy",
+          "prio": 1,
+          "deps": ["M13.1"],
+          "deliverable": "17 项每级效果 + 升级成本公式；末日学部为 aux",
+          "accept": "效果是纯函数 f(level)，不另存快照"
+        },
+        {
+          "id": "M16.2",
+          "title": "升级交互",
+          "status": "done",
+          "owner": "ui",
+          "prio": 1,
+          "deps": ["M16.1"],
+          "deliverable": "组织面板的等级行、升级按钮、经费扣减、效果预览",
+          "accept": "点升级扣 6+4L、加一级；满级禁用；经费不足禁用"
+        },
+        {
+          "id": "M16.3",
+          "title": "效果接入系统",
+          "status": "todo",
+          "owner": "engine",
+          "prio": 1,
+          "deps": ["M16.2", "M15.4"],
+          "deliverable": "帷幕衰减/上限、K 级预警天数、科研速度三处结算",
+          "accept": "延续部升级后帷幕月衰减下降；末日学部升级后预警天数上升"
+        },
+        {
+          "id": "M16.4",
+          "title": "末日学部设定与专属事件",
+          "status": "todo",
+          "owner": "content",
+          "prio": 2,
+          "deps": ["M16.1"],
+          "deliverable": "末日学部的来历、驻地 Site-103、2 条专属事件",
+          "accept": "事件只在末日学部 ≥2 级时出现"
+        }
+      ]
     }
   ]
 }

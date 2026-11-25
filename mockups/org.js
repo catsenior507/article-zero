@@ -24,6 +24,7 @@
     { id: 'aeed',  name: 'AEED 接触科', short: 'AEED', hq: 'S-169',  region: '大洋洲', source: 'canon' },
     { id: 'crypto', name: '神秘动物学部', short: 'CRYP', hq: 'S-44', region: '大洋洲', source: 'canon', kind: 'aux' },
     { id: 'aiad',  name: 'AIAD',       short: 'AIAD',  hq: 'S-72',   region: '亚洲',   source: 'inferred', kind: 'aux' },
+    { id: 'esch',  name: '末日学部',   short: 'ESCH',  hq: 'S-103',  region: '非洲',   source: 'original', kind: 'aux' },
     { id: 'o5',    name: 'O5 议会',    short: 'O5',    hq: '—',      region: '移动',   source: 'canon', kind: 'command' },
     { id: 'ethics', name: '伦理委员会', short: 'ETH',  hq: '—',      region: '移动',   source: 'canon', kind: 'command' }
   ];
@@ -104,9 +105,63 @@
     DATA[id] = Object.assign({}, BASE[id], savedDepts[id] || {});
   });
 
-  var levels = (window.SAVE_DEFAULT && window.SAVE_DEFAULT.world && window.SAVE_DEFAULT.world.org
+  var savedLevels = (window.SAVE_DEFAULT && window.SAVE_DEFAULT.world && window.SAVE_DEFAULT.world.org
     && window.SAVE_DEFAULT.world.org.levels) || {};
-  function lvl(id) { return levels[id] == null ? 2 : levels[id]; }
+  var LEVELS = Object.assign({ esch: 2, crypto: 2, aiad: 2 }, savedLevels);
+  function lvl(id) { return LEVELS[id] == null ? 2 : LEVELS[id]; }
+
+  /* 等级效果：每级线性叠加 */
+  var EFFECTS = {
+    ops:   [{ label: '容量上限', per: 1, unit: '', dec: 0 }],
+    anti:  [{ label: '记忆删除成本', per: -6, unit: '%', dec: 0 }],
+    pata:  [{ label: '叙事研究', per: 6, unit: '%', dec: 0 }],
+    math:  [{ label: '科研速度', per: 5, unit: '%', dec: 0 }, { label: '收容稳定', per: 3, unit: '%', dec: 0 }],
+    dt:    [{ label: '回滚次数', per: 0.5, unit: ' 次', dec: 0 }],
+    theo:  [{ label: '契约成功率', per: 7, unit: '%', dec: 0 }],
+    misc:  [{ label: '帷幕维护', per: -5, unit: '%', dec: 0 }],
+    raisa: [{ label: '存档完整性', per: 8, unit: '%', dec: 0 }],
+    proc:  [{ label: '采购成本', per: -5, unit: '%', dec: 0 }],
+    alch:  [{ label: '装备产出', per: 0.5, unit: ' 件', dec: 0 }],
+    del:   [{ label: '删除效率', per: 9, unit: '%', dec: 0 }],
+    cont:  [{ label: '帷幕月衰减', per: -0.1, unit: '', dec: 1 }, { label: '帷幕上限', per: 1, unit: '', dec: 0 }],
+    decom: [{ label: '处决回收', per: 8, unit: '%', dec: 0 }],
+    aeed:  [{ label: '部门士气', per: 2, unit: '', dec: 0 }],
+    crypto: [{ label: '生态事件解锁', per: 0.5, unit: '', dec: 0 }],
+    aiad:  [{ label: '数字收容', per: 6, unit: '%', dec: 0 }],
+    esch:  [{ label: 'K 级预警', per: 1, unit: ' 天', dec: 0 }, { label: '处置成本', per: -4, unit: '%', dec: 0 }]
+  };
+  function effectList(id) {
+    var L = lvl(id), arr = EFFECTS[id] || [];
+    return arr.map(function (e) {
+      var v = e.per * L;
+      var sign = v >= 0 ? '+' : '−';
+      return e.label + ' ' + sign + Math.abs(v).toFixed(e.dec) + e.unit;
+    });
+  }
+  function upgradeCost(level) { return 6 + level * 4; }
+
+  function fundingEl() {
+    var ms = document.querySelectorAll('.topbar .metric');
+    for (var i = 0; i < ms.length; i++) {
+      var k = ms[i].querySelector('.k');
+      if (k && k.textContent.trim() === '经费') return ms[i].querySelector('.v');
+    }
+    return null;
+  }
+  function fundingValue() {
+    var el = fundingEl();
+    return el ? (parseFloat(String(el.textContent).replace(/[^0-9.]/g, '')) || 0) : 0;
+  }
+  function upgrade(id) {
+    var L = lvl(id);
+    if (L >= 5) return { ok: false, reason: '已满级' };
+    var cost = upgradeCost(L);
+    if (fundingValue() < cost) return { ok: false, reason: '经费不足（需 $' + cost + 'M）' };
+    var el = fundingEl();
+    if (el) el.textContent = '$' + Math.round(fundingValue() - cost);
+    LEVELS[id] = L + 1;
+    return { ok: true, cost: cost, level: L + 1 };
+  }
 
   function deptById(id) {
     for (var i = 0; i < DEPTS.length; i++) if (DEPTS[i].id === id) return DEPTS[i];
@@ -128,7 +183,8 @@
 
   window.Org = {
     depts: DEPTS, mtfs: MTFS, siteRegion: SITE_REGION, sitesRes: SITES_RES,
-    level: lvl, mtfsOf: mtfsOf, deptData: deptData, data: DATA, need: NEED
+    level: lvl, levels: LEVELS, upgrade: upgrade, upgradeCost: upgradeCost,
+    effects: effectList, mtfsOf: mtfsOf, deptData: deptData, data: DATA, need: NEED
   };
 
   /* ---------- 组织面板 ---------- */
@@ -144,11 +200,12 @@
       '<div class="opname">—</div>' +
       '<div class="oprow"><span>总部</span><b class="ophq">—</b><i class="opsrc2"></i></div>' +
       '<div class="oprow"><span>区域</span><b class="oprg">—</b></div>' +
-      '<div class="oprow"><span>等级</span><b class="oplv">—</b></div>' +
+      '<div class="oprow"><span>等级</span><b class="oplv">—</b><button class="opup">升级</button></div>' +
       '<div class="oprow"><span>编制</span><b class="opstaff">—</b></div>' +
       '<div class="oprow"><span>D 级</span><b class="opd">—</b></div>' +
       '<div class="oprow"><span>士气</span><b class="opmor">—</b></div>' +
       '<div class="oprow"><span>月预算</span><b class="opbud">—</b></div>' +
+      '<div class="opeff"></div>' +
       '<div class="opmtf-h">所属特遣队</div>' +
       '<div class="opmtfs"></div>' +
       '<div class="ophint">总部失守 → 部门 −1 级、所属特遣队停摆 2 回合</div>' +
@@ -177,9 +234,30 @@
     if (!d) return;
     panel.querySelector('.opname').textContent = d.name + (d.kind === 'command' ? ' · 指挥' : '');
     panel.querySelector('.ophq').textContent = d.hq === '—' ? (d.kind === 'command' ? '移动' : '无固定') : d.hq;
-    panel.querySelector('.opsrc2').textContent = d.source === 'canon' ? '（官方设定）' : '（按职能推定）';
+    panel.querySelector('.opsrc2').textContent =
+      d.source === 'canon' ? '（官方设定）' : d.source === 'original' ? '（本作原创）' : '（按职能推定）';
     panel.querySelector('.oprg').textContent = d.region;
-    panel.querySelector('.oplv').textContent = d.kind === 'command' ? '—' : lvl(d.id) + ' / 5';
+
+    var L = lvl(d.id);
+    var lvEl = panel.querySelector('.oplv');
+    var upBtn = panel.querySelector('.opup');
+    if (d.kind === 'command') {
+      lvEl.textContent = '—';
+      upBtn.style.display = 'none';
+    } else {
+      lvEl.textContent = L + ' / 5';
+      upBtn.style.display = '';
+      upBtn.textContent = L >= 5 ? '已满级' : '升级 $' + upgradeCost(L) + 'M';
+      upBtn.disabled = L >= 5 || fundingValue() < upgradeCost(L);
+    }
+    var eff = panel.querySelector('.opeff');
+    eff.innerHTML = '';
+    (effectList(d.id) || []).forEach(function (s) {
+      var row = document.createElement('div');
+      row.className = 'opeffrow';
+      row.textContent = s;
+      eff.appendChild(row);
+    });
 
     var r = DATA[d.id];
     if (r && NEED[d.id]) {
@@ -227,6 +305,10 @@
   var btn = document.querySelector('.rbtn[title="特遣队"]');
   if (btn) btn.addEventListener('click', function () { toggle(); });
   panel.querySelector('.opx').addEventListener('click', function () { panel.classList.remove('open'); });
+  panel.querySelector('.opup').addEventListener('click', function () {
+    var r = upgrade(selected);
+    if (r.ok) render();
+  });
 
   render();
   window.Org.render = render;

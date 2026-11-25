@@ -11,7 +11,7 @@
 .oph .opx{margin-left:auto;color:var(--muted);cursor:pointer;font-size:15px}
 .oph .opx:hover{color:var(--accent)}
 
-.oplist{max-height:360px;overflow:auto;border-bottom:1px solid var(--line);flex:none}
+.oplist{max-height:268px;overflow:auto;border-bottom:1px solid var(--line);flex:none}
 .opitem{display:flex;align-items:center;gap:10px;padding:5px 14px;cursor:pointer;
   border-bottom:1px solid var(--line-soft)}
 .opitem:hover{background:var(--rowalt)}
@@ -21,18 +21,24 @@
 .opnm{flex:1;font-size:12px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ophqs{font:10px/1 Consolas;color:var(--muted);flex:none}
 
-.opdetail{flex:1;padding:14px 16px;display:flex;flex-direction:column;gap:8px;min-height:0}
+.opdetail{flex:1;padding:12px 16px;display:flex;flex-direction:column;gap:6px;min-height:0;overflow:auto}
 .opname{font-size:14px;font-weight:600;letter-spacing:.06em}
 .oprow{display:flex;align-items:center;gap:10px;font-size:11px;color:var(--muted)}
 .oprow>span:first-child{width:64px;flex:none;color:var(--dim);font-size:10px;letter-spacing:.1em}
 .oprow b{font:11px/1 Consolas;color:var(--text);font-weight:400}
 .opsrc2{font-style:normal;font:9px/1 Consolas;color:var(--dim);margin-left:6px}
+.opup{margin-left:8px;background:var(--btnbg);border:1px solid var(--line);color:var(--muted);
+  font:9px/1 Consolas;padding:4px 7px;cursor:pointer;letter-spacing:.04em}
+.opup:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
+.opup:disabled{opacity:.35;cursor:not-allowed}
+.opeff{display:flex;flex-wrap:wrap;gap:3px 12px;margin:3px 0 2px}
+.opeffrow{font:9px/1.4 Consolas;color:var(--accent)}
 .opmtf-h{margin-top:6px;font:9px/1 Consolas;color:var(--dim);letter-spacing:.16em}
-.opmtfs{display:flex;flex-direction:column;overflow:auto;flex:1}
+.opmtfs{display:flex;flex-direction:column;flex:none}
 .opmtf{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px dashed var(--line-soft);
   font-size:11px}
 .opmtf b{flex:1;font-weight:400;color:var(--text)}
 .opmtf .base{font:10px/1 Consolas;color:var(--muted)}
 .opmtf .src{font:9px/1 Consolas;color:var(--dim);border:1px solid var(--line);padding:2px 4px}
 .opempty{font:10px/1.6 Consolas;color:var(--dim);padding:6px 0}
-.ophint{margin-top:auto;font:9px/1.5 Consolas;color:var(--dim);border-top:1px dashed var(--line-soft);padding-top:8px}
+.ophint{margin-top:8px;font:9px/1.5 Consolas;color:var(--dim);border-top:1px dashed var(--line-soft);padding-top:8px}
