@@ -1020,6 +1020,53 @@
           "accept": "事件只在末日学部 ≥2 级时出现"
         }
       ]
+    },
+    {
+      "id": "M17",
+      "title": "阶段 17 · 支撑部门（外务 / HR / 情报）",
+      "status": "todo",
+      "children": [
+        {
+          "id": "M17.1",
+          "title": "外务部",
+          "status": "todo",
+          "owner": "content",
+          "prio": 1,
+          "deps": ["M11.2"],
+          "deliverable": "外交归属、每级拨款 +3%、冷却 −1 月、5 级联合行动",
+          "accept": "外务部等级影响外交面板的拨款额与冷却"
+        },
+        {
+          "id": "M17.2",
+          "title": "人力资源部",
+          "status": "todo",
+          "owner": "content",
+          "prio": 1,
+          "deps": ["M14.1"],
+          "deliverable": "编制上限 +1/级、士气 +1/级、3 级跨部门借调",
+          "accept": "升级后编制上限与士气均值变化；借调会扣另一部门士气"
+        },
+        {
+          "id": "M17.3",
+          "title": "情报部",
+          "status": "todo",
+          "owner": "content",
+          "prio": 2,
+          "deps": ["M16.3"],
+          "deliverable": "事件预览 +1 条/级；末日学部预警天数 +0.5/级",
+          "accept": "情报部 ≥2 级时能看到下月事件类型；预警天数联动"
+        },
+        {
+          "id": "M17.4",
+          "title": "反概念部 / 空间阻断部事件化",
+          "status": "todo",
+          "owner": "content",
+          "prio": 3,
+          "deps": ["M15.2"],
+          "deliverable": "各 2–3 张事件卡，不做部门树",
+          "accept": "反概念事件删掉一个选项而非一个部门；空间阻断事件给站点加一层"
+        }
+      ]
     }
   ]
 }
