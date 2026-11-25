@@ -909,6 +909,53 @@
           "accept": "攻破 S-87 后超形上学部 −1 级且 Lambda-5 停摆 2 回合"
         }
       ]
+    },
+    {
+      "id": "M14",
+      "title": "阶段 14 · 部门资源与士气",
+      "status": "doing",
+      "children": [
+        {
+          "id": "M14.1",
+          "title": "部门资源数据（编制 / D 级 / 预算 / 士气）",
+          "status": "done",
+          "owner": "economy",
+          "prio": 1,
+          "deps": ["M13.1"],
+          "deliverable": "14 部门 × 四项资源 + 需求线 + 19 站点容量/污染",
+          "accept": "编制合计 84、D 级 1450、预算 94、容量 28/40、污染 8"
+        },
+        {
+          "id": "M14.2",
+          "title": "资源分布面板",
+          "status": "done",
+          "owner": "ui",
+          "prio": 1,
+          "deps": ["M14.1"],
+          "deliverable": "点顶栏资源打开面板，部门/站点双页签",
+          "accept": "五个资源各有分布视图；状态色区分充足/紧张/缺员"
+        },
+        {
+          "id": "M14.3",
+          "title": "士气月度结算",
+          "status": "done",
+          "owner": "engine",
+          "prio": 1,
+          "deps": ["M14.1"],
+          "deliverable": "每 30 游戏日按满足率调整部门士气；顶栏显示均值",
+          "accept": "缺员部门每月 −2；D 级 <70% 再 −1；顶栏士气随均值变化"
+        },
+        {
+          "id": "M14.4",
+          "title": "资源不足的后果",
+          "status": "todo",
+          "owner": "engine",
+          "prio": 1,
+          "deps": ["M14.3", "M9.9"],
+          "deliverable": "低效/事故/罢工三类后果与阈值",
+          "accept": "士气 <40 产出 −25%；<25 每月 15% 罢工；缺员站点事故率上升"
+        }
+      ]
     }
   ]
 }

@@ -38,11 +38,27 @@ window.SAVE_DEFAULT = {
       { id: 'an', relation: 20, cooldownDay: 0, concessions: [] }
     ],
 
-    // 组织：部门等级（驻地与隶属在 org.js 里）
+    // 组织：部门等级与部门资源（驻地与隶属在 org.js 里）
     org: {
       levels: {
         ops: 4, anti: 2, pata: 3, math: 3, dt: 2, theo: 2, misc: 2,
         raisa: 3, proc: 3, alch: 2, del: 1, cont: 1, decom: 1, aeed: 1
+      },
+      depts: {
+        ops:   { staff: 20, dclass: 420, morale: 62 },
+        anti:  { staff: 6,  dclass: 80,  morale: 58 },
+        pata:  { staff: 6,  dclass: 120, morale: 71 },
+        math:  { staff: 5,  dclass: 90,  morale: 66 },
+        dt:    { staff: 4,  dclass: 70,  morale: 60 },
+        theo:  { staff: 4,  dclass: 60,  morale: 55 },
+        misc:  { staff: 5,  dclass: 80,  morale: 64 },
+        raisa: { staff: 8,  dclass: 40,  morale: 70 },
+        proc:  { staff: 7,  dclass: 60,  morale: 68 },
+        alch:  { staff: 5,  dclass: 110, morale: 61 },
+        del:   { staff: 3,  dclass: 30,  morale: 48 },
+        cont:  { staff: 4,  dclass: 20,  morale: 57 },
+        decom: { staff: 3,  dclass: 150, morale: 52 },
+        aeed:  { staff: 4,  dclass: 120, morale: 66 }
       }
     }
   },

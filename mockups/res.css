@@ -1,0 +1,30 @@
+/* 资源分布面板 */
+.respanel{position:absolute;right:86px;top:168px;height:560px;width:520px;z-index:29;
+  background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow);
+  display:none;flex-direction:column;
+  clip-path:polygon(0 24px,24px 0,100% 0,100% calc(100% - 26px),calc(100% - 26px) 100%,0 100%)}
+.respanel.open{display:flex}
+.rsh{height:50px;display:flex;align-items:center;gap:10px;padding:0 16px;
+  border-bottom:1px solid var(--line);flex:none}
+.rsh b{font-size:14px;letter-spacing:.16em;font-weight:600}
+.rsh .rsn{font:9px/1 Consolas;color:var(--dim);letter-spacing:.08em}
+.rsh .rsx{margin-left:auto;color:var(--muted);cursor:pointer;font-size:15px}
+.rsh .rsx:hover{color:var(--accent)}
+
+.rstabs{display:flex;gap:2px;padding:8px 14px 0;flex:none}
+.rstabs button{background:none;border:1px solid var(--line);color:var(--dim);
+  font:10px/1 Consolas;padding:5px 12px;cursor:pointer;letter-spacing:.1em}
+.rstabs button.on{color:var(--accent);border-color:var(--accent)}
+
+.rslist{flex:1;overflow:auto;padding:8px 14px}
+.rsrow{display:flex;align-items:center;gap:8px;padding:5px 0;
+  border-bottom:1px solid var(--line-soft);font-size:11px}
+.rsnm{width:112px;flex:none;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rsv{width:80px;flex:none;text-align:right;font:10px/1 Consolas;color:var(--muted)}
+.rsbar{flex:1;height:4px;background:var(--track);min-width:40px}
+.rsbar i{display:block;height:100%;background:var(--accent)}
+.rsst{width:42px;flex:none;text-align:right;font:9px/1 Consolas;color:var(--dim)}
+.rsst.warn{color:var(--accent)}
+.rsst.bad{color:var(--danger)}
+.rsglobal{padding:18px 4px;font:11px/1.9 Consolas;color:var(--dim)}
+.rsfoot{border-top:1px solid var(--line);padding:8px 14px;font:9px/1.6 Consolas;color:var(--dim);min-height:34px}
