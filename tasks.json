@@ -815,6 +815,53 @@
           "accept": "调低某政体关系后，下月总收入随之下降"
         }
       ]
+    },
+    {
+      "id": "M12",
+      "title": "阶段 12 · 部门扩展",
+      "status": "todo",
+      "children": [
+        {
+          "id": "M12.1",
+          "title": "删除部 + 记忆空洞",
+          "status": "todo",
+          "owner": "content",
+          "prio": 1,
+          "deps": ["M4.1"],
+          "deliverable": "删除记录/存档的部门树与隐藏值 memoryHoles",
+          "accept": "删除降低污染但有代价；空洞高时部门等级会回退"
+        },
+        {
+          "id": "M12.2",
+          "title": "延续部 + 常态指数",
+          "status": "todo",
+          "owner": "content",
+          "prio": 1,
+          "deps": ["M4.1"],
+          "deliverable": "常态指数与公众接口；与原站点运营分支互斥",
+          "accept": "常态指数影响帷幕与容量上限；两条路线不能同时选"
+        },
+        {
+          "id": "M12.3",
+          "title": "废除部 + AEED（镜像动作）",
+          "status": "todo",
+          "owner": "content",
+          "prio": 1,
+          "deps": ["M4.1"],
+          "deliverable": "处决异常 / 与异常共处两组动作与后果",
+          "accept": "处决回收容量但可能回归；共处提升士气但有失效风险"
+        },
+        {
+          "id": "M12.4",
+          "title": "第二批六个部门的合并实现",
+          "status": "todo",
+          "owner": "economy",
+          "prio": 3,
+          "deps": ["M12.1"],
+          "deliverable": "AIAD / TMO / 超现实 / 神话民俗 / 神秘动物 / 遏火，先以事件与分支存在",
+          "accept": "六个部门各自至少 1 个事件或 1 个分支能力，不新开完整树"
+        }
+      ]
     }
   ]
 }
