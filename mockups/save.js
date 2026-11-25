@@ -36,7 +36,15 @@ window.SAVE_DEFAULT = {
       { id: 'af', relation: 28, cooldownDay: 0, concessions: [] },
       { id: 'oc', relation: 52, cooldownDay: 0, concessions: [] },
       { id: 'an', relation: 20, cooldownDay: 0, concessions: [] }
-    ]
+    ],
+
+    // 组织：部门等级（驻地与隶属在 org.js 里）
+    org: {
+      levels: {
+        ops: 4, anti: 2, pata: 3, math: 3, dt: 2, theo: 2, misc: 2,
+        raisa: 3, proc: 3, alch: 2, del: 1, cont: 1, decom: 1, aeed: 1
+      }
+    }
   },
 
   resources: {

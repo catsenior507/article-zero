@@ -862,6 +862,53 @@
           "accept": "六个部门各自至少 1 个事件或 1 个分支能力，不新开完整树"
         }
       ]
+    },
+    {
+      "id": "M13",
+      "title": "阶段 13 · 部门驻地与特遣队隶属",
+      "status": "doing",
+      "children": [
+        {
+          "id": "M13.1",
+          "title": "部门驻地数据模型",
+          "status": "done",
+          "owner": "economy",
+          "prio": 1,
+          "deps": ["M4.1"],
+          "deliverable": "14 个部门 × 19 个站点的 hq 映射，标 canon / inferred",
+          "accept": "官方写明的 7 个驻地与文档一致；其余带 source 标记"
+        },
+        {
+          "id": "M13.2",
+          "title": "特遣队隶属与基地",
+          "status": "done",
+          "owner": "content",
+          "prio": 1,
+          "deps": ["M13.1"],
+          "deliverable": "15 支 MTF 的 dept / base / source",
+          "accept": "Alpha-1 → O5、Omega-1 → 伦理、Gamma-4 → 神秘动物，与官方一致"
+        },
+        {
+          "id": "M13.3",
+          "title": "组织面板",
+          "status": "done",
+          "owner": "ui",
+          "prio": 1,
+          "deps": ["M13.2"],
+          "deliverable": "部门列表 + 驻地 + 等级 + 所属特遣队",
+          "accept": "点特遣队按钮打开；切换部门能看到对应 MTF 与基地"
+        },
+        {
+          "id": "M13.4",
+          "title": "驻地规则接入",
+          "status": "todo",
+          "owner": "engine",
+          "prio": 2,
+          "deps": ["M13.3", "M4.3"],
+          "deliverable": "总部失守→部门降级/MTF 停摆；调动门槛",
+          "accept": "攻破 S-87 后超形上学部 −1 级且 Lambda-5 停摆 2 回合"
+        }
+      ]
     }
   ]
 }
