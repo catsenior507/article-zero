@@ -51,9 +51,9 @@
     panel.querySelector('.rst').textContent = m.label;
     var total = '';
     if (state.key === 'staff') total = '84 / 100';
-    else if (state.key === 'budget') total = '月度 $94M · 现金 $300M';
+    else if (state.key === 'budget') total = '月度 $93.7M · 现金 $300M';
     else if (state.key === 'morale') total = '平均 ' + avgMorale();
-    else if (state.key === 'cap') total = '28 / 40';
+    else if (state.key === 'cap') total = '28 / 48';
     else if (state.key === 'contam') total = '08 / 100';
     else total = '全局指标';
     panel.querySelector('.rsn').textContent = total;

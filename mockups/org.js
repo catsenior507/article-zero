@@ -22,6 +22,8 @@
     { id: 'cont',  name: '延续部',     short: 'CONT',  hq: 'S-33',   region: '北美',   source: 'inferred' },
     { id: 'decom', name: '废除部',     short: 'DECOM', hq: 'S-47',   region: '南美',   source: 'inferred' },
     { id: 'aeed',  name: 'AEED 接触科', short: 'AEED', hq: 'S-169',  region: '大洋洲', source: 'canon' },
+    { id: 'crypto', name: '神秘动物学部', short: 'CRYP', hq: 'S-44', region: '大洋洲', source: 'canon', kind: 'aux' },
+    { id: 'aiad',  name: 'AIAD',       short: 'AIAD',  hq: 'S-72',   region: '亚洲',   source: 'inferred', kind: 'aux' },
     { id: 'o5',    name: 'O5 议会',    short: 'O5',    hq: '—',      region: '移动',   source: 'canon', kind: 'command' },
     { id: 'ethics', name: '伦理委员会', short: 'ETH',  hq: '—',      region: '移动',   source: 'canon', kind: 'command' }
   ];
@@ -54,7 +56,7 @@
     del:   { staff: 4,  dclass: 40 },  cont:  { staff: 4,  dclass: 25 },
     decom: { staff: 3,  dclass: 180 }, aeed:  { staff: 5,  dclass: 140 }
   };
-  var BUDGET = { ops: 20, anti: 6, pata: 7, math: 6, dt: 5, theo: 5, misc: 6,
+  var BUDGET = { ops: 19.7, anti: 6, pata: 7, math: 6, dt: 5, theo: 5, misc: 6,
                  raisa: 9, proc: 8, alch: 6, del: 3, cont: 4, decom: 4, aeed: 5 };
 
   /* 默认值（存档缺失时用） */
@@ -113,7 +115,7 @@
   function mtfsOf(id) { return MTFS.filter(function (m) { return m.dept === id; }); }
 
   function deptData() {
-    return DEPTS.filter(function (d) { return d.kind !== 'command'; }).map(function (d) {
+    return DEPTS.filter(function (d) { return d.kind !== 'command' && d.kind !== 'aux'; }).map(function (d) {
       var r = DATA[d.id];
       return {
         id: d.id, name: d.name, short: d.short, hq: d.hq, region: d.region,

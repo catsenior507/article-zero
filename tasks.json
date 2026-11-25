@@ -287,8 +287,8 @@
       "children": [
         {
           "id": "M4.1",
-          "title": "部门数据（10 部门 + 伦理）",
-          "status": "todo",
+          "title": "部门数据（14 部门 + 2 辅助 + 伦理）",
+          "status": "done",
           "owner": "content",
           "prio": 1,
           "deps": ["M1.1"],
@@ -750,7 +750,7 @@
         {
           "id": "M10.11",
           "title": "十年经济模拟器",
-          "status": "done",
+          "status": "doing",
           "owner": "economy",
           "prio": 1,
           "deps": ["M10.9"],
@@ -955,6 +955,23 @@
           "deliverable": "低效/事故/罢工三类后果与阈值",
           "accept": "士气 <40 产出 −25%；<25 每月 15% 罢工；缺员站点事故率上升"
         }
+      ]
+    },
+    {
+      "id": "M15",
+      "title": "阶段 15 · 审计整改",
+      "status": "doing",
+      "children": [
+        { "id": "M15.1", "title": "轴 token 与符号约定（冷酷 = K+）", "status": "todo", "owner": "content", "prio": 1, "deps": [], "deliverable": "05 的选项行补足 C/L/K/V/P 五类 token；02 的轴表与符号对齐", "accept": "±40 / ±60 在 42 张卡里可达" },
+        { "id": "M15.2", "title": "K 链时间轴重排", "status": "todo", "owner": "content", "prio": 1, "deps": ["M15.1"], "deliverable": "门槛只看时钟；征兆移出 S0；S4 只在未收束时存在", "accept": "03 的阶段表与 42 张卡的时点不再冲突" },
+        { "id": "M15.3", "title": "部门升级与指令点 / 项目经济", "status": "todo", "owner": "economy", "prio": 1, "deps": ["M4.1"], "deliverable": "14 部门 × 5 级的能力与花费；指令点来源与消耗", "accept": "每回合指令点收支可算平；升级有明确成本与前置" },
+        { "id": "M15.4", "title": "state.js + 存档 v2", "status": "todo", "owner": "engine", "prio": 1, "deps": ["M14.1"], "deliverable": "单一状态层：资源/部门/站点/时间/外交统一读写", "accept": "刷新后状态不丢；五个面板读同一份 state" },
+        { "id": "M15.5", "title": "回合结算统一入口", "status": "todo", "owner": "engine", "prio": 1, "deps": ["M15.4"], "deliverable": "nextTurn() 一处结算收入/支出/士气/事件/冷却", "accept": "点归档只走一条路径；重复点击不重复结算" },
+        { "id": "M15.6", "title": "数值同步测试", "status": "todo", "owner": "economy", "prio": 2, "deps": ["M15.4"], "deliverable": "107.9 / 93.7 / 14.2 / 300 / 84 / 61 / 28-48 的断言", "accept": "改一处数字，测试立即失败并指出位置" },
+        { "id": "M15.7", "title": "任务树语义校验", "status": "todo", "owner": "qa", "prio": 2, "deps": [], "deliverable": "done 节点的 deps 必须全部 done；owner 必须存在", "accept": "tasks-check 增加语义检查并通过" },
+        { "id": "M15.8", "title": "innerHTML 安全清理", "status": "todo", "owner": "ui", "prio": 2, "deps": [], "deliverable": "存档/事件数据一律 textContent 或 escapeHTML", "accept": "grep innerHTML 不含变量拼接用户/存档数据" },
+        { "id": "M15.9", "title": "测试独立性", "status": "todo", "owner": "qa", "prio": 2, "deps": [], "deliverable": "engine-test 每条用例独立 create()", "accept": "单条用例可单独跑，不依赖前一条的日期" },
+        { "id": "M15.10", "title": "资源引用与符号检查", "status": "todo", "owner": "qa", "prio": 3, "deps": [], "deliverable": "src/href/#symbol 全量解析脚本", "accept": "0 个悬空引用；9 个母版 viewBox 与 sprite 一致" }
       ]
     }
   ]
