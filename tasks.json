@@ -4,83 +4,213 @@
     "version": 2,
     "updated": "2026-11-20",
     "description": "多 agent 协同的任务树。每个节点是一个可领取的任务，deps 指向必须先完成的节点 id；没有 deps 或 deps 全部 done 的节点即可并行领取。",
-    "statuses": ["todo", "doing", "review", "done", "blocked"],
+    "statuses": [
+      "todo",
+      "doing",
+      "review",
+      "done",
+      "blocked"
+    ],
     "conventions": {
       "id": "阶段.序号，例如 M2.3",
       "owner": "roles 里的 id；空字符串表示未分配",
       "prio": "1 高 / 2 中 / 3 低",
       "accept": "验收条件，必须是可以检查的事实，不写形容词"
     },
-    "criticalPath": ["M1.1", "M2.2", "M4.3", "M5.4", "M8.4"]
+    "criticalPath": [
+      "M1.1",
+      "M2.2",
+      "M4.3",
+      "M5.4",
+      "M8.4"
+    ]
   },
-
   "roles": [
     {
       "id": "lead",
       "name": "统筹",
-      "scope": ["tasks.json", "docs/", "README.md"],
-      "can": ["拆任务", "改优先级", "合并分支"],
-      "mustNot": ["直接改引擎实现"]
+      "scope": [
+        "tasks.json",
+        "docs/",
+        "README.md"
+      ],
+      "can": [
+        "拆任务",
+        "改优先级",
+        "合并分支"
+      ],
+      "mustNot": [
+        "直接改引擎实现"
+      ]
     },
     {
       "id": "engine",
       "name": "引擎 / 数据",
-      "scope": ["mockups/engine.js", "mockups/save.js", "mockups/state.js", "tools/"],
-      "can": ["改引擎", "加测试", "改存档格式"],
-      "mustNot": ["改 v2.css", "改界面 DOM"]
+      "scope": [
+        "mockups/engine.js",
+        "mockups/save.js",
+        "mockups/state.js",
+        "tools/"
+      ],
+      "can": [
+        "改引擎",
+        "加测试",
+        "改存档格式"
+      ],
+      "mustNot": [
+        "改 v2.css",
+        "改界面 DOM"
+      ]
     },
     {
       "id": "ui",
       "name": "界面实现",
-      "scope": ["mockups/01-main.html", "mockups/02-dept.html", "mockups/time-ui.js", "mockups/time.css"],
-      "can": ["接线数据", "加交互"],
-      "mustNot": ["改 v2.css 的结构规则", "手改 assets/icons.js 的生成段"]
+      "scope": [
+        "mockups/01-main.html",
+        "mockups/02-dept.html",
+        "mockups/time-ui.js",
+        "mockups/time.css"
+      ],
+      "can": [
+        "接线数据",
+        "加交互"
+      ],
+      "mustNot": [
+        "改 v2.css 的结构规则",
+        "手改 assets/icons.js 的生成段"
+      ]
     },
     {
       "id": "content",
       "name": "叙事 / 内容",
-      "scope": ["mockups/events.js", "docs/03-K级情景链.md", "docs/05-事件卡库.md"],
-      "can": ["写事件卡", "写情景链", "写结局"],
-      "mustNot": ["改引擎逻辑"]
+      "scope": [
+        "mockups/events.js",
+        "docs/03-K级情景链.md",
+        "docs/05-事件卡库.md"
+      ],
+      "can": [
+        "写事件卡",
+        "写情景链",
+        "写结局"
+      ],
+      "mustNot": [
+        "改引擎逻辑"
+      ]
     },
     {
       "id": "economy",
       "name": "经济 / 数值",
-      "scope": ["docs/14-财政机制.md", "mockups/save.js", "mockups/engine.js"],
-      "can": ["调公式", "定初始值", "加财政事件"],
-      "mustNot": ["改界面结构", "改叙事文本"]
+      "scope": [
+        "docs/14-财政机制.md",
+        "mockups/save.js",
+        "mockups/engine.js"
+      ],
+      "can": [
+        "调公式",
+        "定初始值",
+        "加财政事件"
+      ],
+      "mustNot": [
+        "改界面结构",
+        "改叙事文本"
+      ]
     },
     {
       "id": "art",
       "name": "美术",
-      "scope": ["assets/avatars/", "assets/ui/", "mockups/avatars.html"],
-      "can": ["加头像", "改控件母版"],
-      "mustNot": ["改 JS 逻辑"]
+      "scope": [
+        "assets/avatars/",
+        "assets/ui/",
+        "mockups/avatars.html"
+      ],
+      "can": [
+        "加头像",
+        "改控件母版"
+      ],
+      "mustNot": [
+        "改 JS 逻辑"
+      ]
     },
     {
       "id": "qa",
       "name": "测试",
-      "scope": ["tools/", "_qa/"],
-      "can": ["加测试", "提缺陷", "跑回归"],
-      "mustNot": ["直接修业务代码"]
+      "scope": [
+        "tools/",
+        "_qa/"
+      ],
+      "can": [
+        "加测试",
+        "提缺陷",
+        "跑回归"
+      ],
+      "mustNot": [
+        "直接修业务代码"
+      ]
     },
     {
       "id": "release",
       "name": "发布 / 合规",
-      "scope": ["LICENSING.md", "README.md", "docs/08-SCP条目企划.md"],
-      "can": ["改授权声明", "打发布包"],
-      "mustNot": ["改玩法数值"]
+      "scope": [
+        "LICENSING.md",
+        "README.md",
+        "docs/08-SCP条目企划.md"
+      ],
+      "can": [
+        "改授权声明",
+        "打发布包"
+      ],
+      "mustNot": [
+        "改玩法数值"
+      ]
     }
   ],
-
   "lanes": [
-    { "id": "L1", "name": "数据线", "chain": ["M1.1", "M1.2", "M2.2"] },
-    { "id": "L2", "name": "界面线", "chain": ["M3.2", "M3.3", "M4.2"] },
-    { "id": "L3", "name": "内容线", "chain": ["M1.3", "M5.1", "M5.3"] },
-    { "id": "L4", "name": "美术线", "chain": ["M7.1", "M7.3", "M7.2"] },
-    { "id": "L5", "name": "元叙事线", "chain": ["M6.1", "M6.2", "M6.3"] }
+    {
+      "id": "L1",
+      "name": "数据线",
+      "chain": [
+        "M1.1",
+        "M1.2",
+        "M2.2"
+      ]
+    },
+    {
+      "id": "L2",
+      "name": "界面线",
+      "chain": [
+        "M3.2",
+        "M3.3",
+        "M4.2"
+      ]
+    },
+    {
+      "id": "L3",
+      "name": "内容线",
+      "chain": [
+        "M1.3",
+        "M5.1",
+        "M5.3"
+      ]
+    },
+    {
+      "id": "L4",
+      "name": "美术线",
+      "chain": [
+        "M7.1",
+        "M7.3",
+        "M7.2"
+      ]
+    },
+    {
+      "id": "L5",
+      "name": "元叙事线",
+      "chain": [
+        "M6.1",
+        "M6.2",
+        "M6.3"
+      ]
+    }
   ],
-
   "tree": [
     {
       "id": "M0",
@@ -140,7 +270,9 @@
           "status": "todo",
           "owner": "engine",
           "prio": 1,
-          "deps": ["M0.3"],
+          "deps": [
+            "M0.3"
+          ],
           "deliverable": "mockups/state.js：资源、部门、待决、日期",
           "accept": "界面九个资源数字与待决计数全部来自 STATE，HTML 里没有硬编码数字"
         },
@@ -150,7 +282,9 @@
           "status": "todo",
           "owner": "engine",
           "prio": 1,
-          "deps": ["M1.1"],
+          "deps": [
+            "M1.1"
+          ],
           "deliverable": "save.js 扩展为 load/save/list/export",
           "accept": "localStorage 存 3 档，切换后界面与时间轴一致；导出 JSON 可再导入"
         },
@@ -160,7 +294,9 @@
           "status": "todo",
           "owner": "content",
           "prio": 1,
-          "deps": ["M0.1"],
+          "deps": [
+            "M0.1"
+          ],
           "deliverable": "events.js 42 条，字段按 docs/04",
           "accept": "id 唯一；控制台列全 42 条；每条有 type/tone/title"
         },
@@ -170,7 +306,9 @@
           "status": "todo",
           "owner": "engine",
           "prio": 1,
-          "deps": ["M1.1"],
+          "deps": [
+            "M1.1"
+          ],
           "deliverable": "月末经费/污染/容量/士气的增减公式",
           "accept": "公式写进 docs/01 并有一条单测覆盖"
         }
@@ -197,7 +335,10 @@
           "status": "todo",
           "owner": "engine",
           "prio": 1,
-          "deps": ["M1.4", "M2.1"],
+          "deps": [
+            "M1.4",
+            "M2.1"
+          ],
           "deliverable": "nextMonth 触发结算：资源变化 + 抽事件 + 回合 +1",
           "accept": "点归档后日期到下月 1 日，资源按公式变化，待决队列新增 1–2 条"
         },
@@ -207,7 +348,9 @@
           "status": "todo",
           "owner": "ui",
           "prio": 2,
-          "deps": ["M2.1"],
+          "deps": [
+            "M2.1"
+          ],
           "deliverable": "年份刻度、已排期事件在轴上的标记",
           "accept": "1× 下能看出当前所处年份；标记与 nextEvent 一致"
         },
@@ -217,7 +360,9 @@
           "status": "todo",
           "owner": "engine",
           "prio": 2,
-          "deps": ["M2.1"],
+          "deps": [
+            "M2.1"
+          ],
           "deliverable": "visibilitychange 时暂停/补算策略",
           "accept": "切走 30 秒回来，日期不跳月；切回后继续按原速走"
         }
@@ -244,7 +389,9 @@
           "status": "doing",
           "owner": "ui",
           "prio": 1,
-          "deps": ["M1.1"],
+          "deps": [
+            "M1.1"
+          ],
           "deliverable": "无 K / 单 K / 多 K 三态；多 K 显示 +N",
           "accept": "三种 threat 值下预警条都正确；无 K 时立案/处置隐藏"
         },
@@ -254,7 +401,9 @@
           "status": "doing",
           "owner": "ui",
           "prio": 1,
-          "deps": ["M1.3"],
+          "deps": [
+            "M1.3"
+          ],
           "deliverable": "面板行由 pending 生成，支持已读/过期",
           "accept": "触发事件后行出现在顶部，计数同步，关闭再开仍在"
         },
@@ -274,7 +423,9 @@
           "status": "todo",
           "owner": "ui",
           "prio": 2,
-          "deps": ["M1.1"],
+          "deps": [
+            "M1.1"
+          ],
           "deliverable": "pins/heat 由 STATE.map 渲染",
           "accept": "改 STATE.map.pins 后地图引脚位置变化"
         }
@@ -291,7 +442,9 @@
           "status": "done",
           "owner": "content",
           "prio": 1,
-          "deps": ["M1.1"],
+          "deps": [
+            "M1.1"
+          ],
           "deliverable": "每部门等级/进度/当前动作/负责人",
           "accept": "数据与 docs/01 的部门表一致"
         },
@@ -301,7 +454,9 @@
           "status": "todo",
           "owner": "ui",
           "prio": 1,
-          "deps": ["M4.1"],
+          "deps": [
+            "M4.1"
+          ],
           "deliverable": "树、详情、两个动作按钮接数据",
           "accept": "选中部门后详情来自 STATE；提请/下达写回状态"
         },
@@ -311,7 +466,9 @@
           "status": "todo",
           "owner": "engine",
           "prio": 1,
-          "deps": ["M4.2"],
+          "deps": [
+            "M4.2"
+          ],
           "deliverable": "13 席、4  bloc、表决通过条件",
           "accept": "提案有票数结果；权威/共识按结果变化"
         }
@@ -328,7 +485,9 @@
           "status": "todo",
           "owner": "content",
           "prio": 1,
-          "deps": ["M1.3"],
+          "deps": [
+            "M1.3"
+          ],
           "deliverable": "XK/ZK/CK/NK/Lifted Veil/ΩK/DBK 的节点与门槛",
           "accept": "每条链有 5 阶段、2 个门槛、至少 1 个歧义征兆"
         },
@@ -338,7 +497,9 @@
           "status": "todo",
           "owner": "engine",
           "prio": 1,
-          "deps": ["M5.1"],
+          "deps": [
+            "M5.1"
+          ],
           "deliverable": "进度 100→0 的时钟，60/30 触发门槛",
           "accept": "不处置则按天下降；到 0 触发失败态"
         },
@@ -348,7 +509,9 @@
           "status": "todo",
           "owner": "content",
           "prio": 2,
-          "deps": ["M5.1"],
+          "deps": [
+            "M5.1"
+          ],
           "deliverable": "征兆文本与可误判的解释分支",
           "accept": "同一征兆在两条链里可指向不同结论"
         },
@@ -358,7 +521,9 @@
           "status": "todo",
           "owner": "engine",
           "prio": 1,
-          "deps": ["M5.2"],
+          "deps": [
+            "M5.2"
+          ],
           "deliverable": "按四轴 + 隐藏轴判定结局",
           "accept": "八种输入组合各自命中对应结局"
         }
@@ -375,7 +540,9 @@
           "status": "todo",
           "owner": "content",
           "prio": 2,
-          "deps": ["M1.2"],
+          "deps": [
+            "M1.2"
+          ],
           "deliverable": "0–100 觉醒度与触发点",
           "accept": "觉醒度到阈值时出现对应文本与选项"
         },
@@ -385,7 +552,9 @@
           "status": "todo",
           "owner": "engine",
           "prio": 1,
-          "deps": ["M6.1"],
+          "deps": [
+            "M6.1"
+          ],
           "deliverable": "上传/删除行为与抵抗规则",
           "accept": "删除被拒绝时有明确的反制叙事；上传后可被读取"
         },
@@ -395,7 +564,9 @@
           "status": "todo",
           "owner": "engine",
           "prio": 3,
-          "deps": ["M1.2"],
+          "deps": [
+            "M1.2"
+          ],
           "deliverable": "存档内嵌信标，可识别同源世界线",
           "accept": "同一档复制后信标相同；新档信标不同"
         }
@@ -412,7 +583,9 @@
           "status": "todo",
           "owner": "art",
           "prio": 2,
-          "deps": ["M0.4"],
+          "deps": [
+            "M0.4"
+          ],
           "deliverable": "6 张 96×96 SVG，同一套画法",
           "accept": "28px 下可与第一批区分；每人一个识别物"
         },
@@ -432,7 +605,9 @@
           "status": "todo",
           "owner": "art",
           "prio": 1,
-          "deps": ["M0.4"],
+          "deps": [
+            "M0.4"
+          ],
           "deliverable": "所有按钮在 1× 下的对比图",
           "accept": "任一细节 <1.5px 的要么删掉、要么加粗"
         },
@@ -459,7 +634,9 @@
           "status": "todo",
           "owner": "qa",
           "prio": 1,
-          "deps": ["M2.2"],
+          "deps": [
+            "M2.2"
+          ],
           "deliverable": "engine-test.mjs 覆盖结算与抽卡",
           "accept": "新增 ≥6 条用例，全部通过"
         },
@@ -489,7 +666,10 @@
           "status": "todo",
           "owner": "release",
           "prio": 1,
-          "deps": ["M6.2", "M8.1"],
+          "deps": [
+            "M6.2",
+            "M8.1"
+          ],
           "deliverable": "发布包 + docs/08 的条目正文",
           "accept": "LICENSING 与 ATTRIBUTION 齐全；条目勾选 CC BY-SA 3.0"
         }
@@ -506,7 +686,9 @@
           "status": "todo",
           "owner": "economy",
           "prio": 1,
-          "deps": ["M1.1"],
+          "deps": [
+            "M1.1"
+          ],
           "deliverable": "三条收入腿 + 六项支出 + 信封 / 债务 / 黑账 / 曝光度字段与默认值",
           "accept": "覆盖 docs/14 §3–§4 的全部公式；初始值与文档一致（收入 86.1 / 支出 90.6 / 净额 −4.5）；与 docs/15 的物价表对账"
         },
@@ -516,7 +698,10 @@
           "status": "todo",
           "owner": "engine",
           "prio": 1,
-          "deps": ["M9.1", "M2.2"],
+          "deps": [
+            "M9.1",
+            "M2.2"
+          ],
           "deliverable": "月末结算顺序：收入 → 固定支出 → 缺口 → 事件 → 净额",
           "accept": "点归档生成报表；净额与手算一致；报表可在档案回看"
         },
@@ -526,7 +711,9 @@
           "status": "todo",
           "owner": "economy",
           "prio": 1,
-          "deps": ["M9.2"],
+          "deps": [
+            "M9.2"
+          ],
           "deliverable": "五个信封的分配与缺口惩罚",
           "accept": "调低收容 → 容量上限下降；调高研究 → 部门进度加快"
         },
@@ -536,7 +723,9 @@
           "status": "todo",
           "owner": "engine",
           "prio": 1,
-          "deps": ["M9.2"],
+          "deps": [
+            "M9.2"
+          ],
           "deliverable": "黑账比例、审计概率、暴露后的 3 回合链",
           "accept": "黑账 15% 时暴露概率落在公式区间；暴露触发审计链"
         },
@@ -546,7 +735,9 @@
           "status": "todo",
           "owner": "engine",
           "prio": 1,
-          "deps": ["M9.2"],
+          "deps": [
+            "M9.2"
+          ],
           "deliverable": "自动借债、2% 利息、$150 上限、接管投票",
           "accept": "现金 < 0 自动发债；连续 3 回合触顶触发接管"
         },
@@ -556,7 +747,9 @@
           "status": "todo",
           "owner": "engine",
           "prio": 2,
-          "deps": ["M9.2"],
+          "deps": [
+            "M9.2"
+          ],
           "deliverable": "+$40 / 权威 −8；+$25 / 资产 −1",
           "accept": "冷却 6 回合；冷却中点击被拒绝并有提示"
         },
@@ -566,7 +759,9 @@
           "status": "todo",
           "owner": "content",
           "prio": 2,
-          "deps": ["M9.2"],
+          "deps": [
+            "M9.2"
+          ],
           "deliverable": "三种报价（驻站 / 共享研究 / 沉默）与反噬",
           "accept": "接受后条件写入存档；违背后 3 回合内触发反噬"
         },
@@ -576,7 +771,11 @@
           "status": "todo",
           "owner": "ui",
           "prio": 1,
-          "deps": ["M9.3", "M9.4", "M9.5"],
+          "deps": [
+            "M9.3",
+            "M9.4",
+            "M9.5"
+          ],
           "deliverable": "总账 / 预算 / 债务 / 黑账 + 月末报表浮层",
           "accept": "四页签可切换；预算滑块改动有权威代价确认；报表可回看"
         },
@@ -586,7 +785,9 @@
           "status": "todo",
           "owner": "content",
           "prio": 2,
-          "deps": ["M9.4"],
+          "deps": [
+            "M9.4"
+          ],
           "deliverable": "审计、罢工、拨款延迟、勒索、捐赠五类",
           "accept": "五类各有触发条件与后果；可在控制台手动触发"
         },
@@ -596,7 +797,14 @@
           "status": "todo",
           "owner": "qa",
           "prio": 2,
-          "deps": ["M9.8", "M9.9", "M9.11", "M9.12", "M9.13", "M9.14"],
+          "deps": [
+            "M9.8",
+            "M9.9",
+            "M9.11",
+            "M9.12",
+            "M9.13",
+            "M9.14"
+          ],
           "deliverable": "54 回合模拟与三档难度",
           "accept": "每档跑满一局，无负储备死锁、无无限刷钱路径"
         },
@@ -606,7 +814,9 @@
           "status": "todo",
           "owner": "economy",
           "prio": 1,
-          "deps": ["M9.1"],
+          "deps": [
+            "M9.1"
+          ],
           "deliverable": "捐赠方条件、企业规模 E 与抽成率 r、可变现异常表",
           "accept": "三种来源可独立开关；r 从 60 调到 90 能看到帷幕衰减从 0.25 变 1.0；变现一条异常会加曝光度"
         },
@@ -616,7 +826,9 @@
           "status": "todo",
           "owner": "engine",
           "prio": 1,
-          "deps": ["M9.11"],
+          "deps": [
+            "M9.11"
+          ],
           "deliverable": "曝光度 0–100、每月衰减 3、100 时破幕",
           "accept": "三条权重 2 的异常同时变现，约 17 个月触发破幕；破幕扣 12 帷幕并挂一条公开事件链"
         },
@@ -626,7 +838,9 @@
           "status": "todo",
           "owner": "economy",
           "prio": 2,
-          "deps": ["M9.1"],
+          "deps": [
+            "M9.1"
+          ],
           "deliverable": "六行支出与两条成本曲线；出动按次计费",
           "accept": "六行与 docs/14 §4 一致；一次常规出动行动费 +$4，K 级 +$10"
         },
@@ -636,7 +850,9 @@
           "status": "todo",
           "owner": "economy",
           "prio": 2,
-          "deps": ["M9.1"],
+          "deps": [
+            "M9.1"
+          ],
           "deliverable": "docs/15 的单价表与三条假设写入存档：headcountPerPoint / siteSqft / secrecyPremium",
           "accept": "改这三条假设后收支表自动重算；新建站点价格改为 $120M 或分三期"
         }
@@ -653,7 +869,9 @@
           "status": "todo",
           "owner": "economy",
           "prio": 1,
-          "deps": ["M9.1"],
+          "deps": [
+            "M9.1"
+          ],
           "deliverable": "regions 七个区域的系数表写进 save.js；economyVersion 与迁移规则",
           "accept": "所有系数从 regions 读取，代码里没有任何地区常量；改表即改成本"
         },
@@ -663,7 +881,9 @@
           "status": "todo",
           "owner": "economy",
           "prio": 1,
-          "deps": ["M10.1"],
+          "deps": [
+            "M10.1"
+          ],
           "deliverable": "19 个站点，含 id / region / goldKg / staff / status",
           "accept": "站点数与地图引脚一致；每个站点有且只有一个区域"
         },
@@ -673,7 +893,9 @@
           "status": "todo",
           "owner": "engine",
           "prio": 1,
-          "deps": ["M10.1"],
+          "deps": [
+            "M10.1"
+          ],
           "deliverable": "kg→USD 估值、变现延迟、抵押 70%、运输丢失、盘点",
           "accept": "金价改 10% 后估值同步；变现 1 回合后到账并扣价差；跨区运输有丢失判定"
         },
@@ -683,7 +905,10 @@
           "status": "todo",
           "owner": "engine",
           "prio": 1,
-          "deps": ["M10.2", "M9.2"],
+          "deps": [
+            "M10.2",
+            "M9.2"
+          ],
           "deliverable": "站点人事/设施/帷幕与出动成本按区域系数计算",
           "accept": "北美与非洲同规模站点的月支出不同；总额与 docs/16 §5 对账"
         },
@@ -693,7 +918,9 @@
           "status": "todo",
           "owner": "economy",
           "prio": 2,
-          "deps": ["M10.1"],
+          "deps": [
+            "M10.1"
+          ],
           "deliverable": "月度漂移、事件改写、economySnapshot 快照",
           "accept": "跑 12 个月系数有漂移但不出界；货币危机事件能把 labor 降 15%"
         },
@@ -703,7 +930,12 @@
           "status": "todo",
           "owner": "ui",
           "prio": 2,
-          "deps": ["M10.4", "M10.5", "M10.8", "M10.9"],
+          "deps": [
+            "M10.4",
+            "M10.5",
+            "M10.8",
+            "M10.9"
+          ],
           "deliverable": "站点表、金库估值与动作、七区域系数表",
           "accept": "三页可切换；金库变现与转移走确认；区域变化有箭头与高亮"
         },
@@ -713,7 +945,11 @@
           "status": "todo",
           "owner": "qa",
           "prio": 2,
-          "deps": ["M10.6", "M10.10", "M10.11"],
+          "deps": [
+            "M10.6",
+            "M10.10",
+            "M10.11"
+          ],
           "deliverable": "54 回合模拟：金价、金库、区域漂移",
           "accept": "金库不会因金价下跌变成负资产；区域漂移不会让月支出翻倍"
         },
@@ -723,7 +959,9 @@
           "status": "todo",
           "owner": "economy",
           "prio": 1,
-          "deps": ["M10.1"],
+          "deps": [
+            "M10.1"
+          ],
           "deliverable": "七个区域的十个硬指标与产业构成、五维张力",
           "accept": "字段与 docs/17 §2 一致；derive 函数能从 core 算出七项系数，误差 <0.01"
         },
@@ -733,7 +971,9 @@
           "status": "todo",
           "owner": "engine",
           "prio": 1,
-          "deps": ["M10.8"],
+          "deps": [
+            "M10.8"
+          ],
           "deliverable": "Box-Muller + φ=0.5 均值回归 + ±20% 夹逼 + seed 确定性",
           "accept": "同 seed 两次读档结果一致；跑 24 个月无系数出界；结构性事件能改 core"
         },
@@ -743,7 +983,10 @@
           "status": "todo",
           "owner": "content",
           "prio": 2,
-          "deps": ["M10.8", "M9.9"],
+          "deps": [
+            "M10.8",
+            "M9.9"
+          ],
           "deliverable": "罢工 / 骚乱 / 泄密 / 资产冻结四类事件与后果",
           "accept": "张力 >0.55 时月触发率约 8%；四类事件各自改变站点状态或成本"
         },
@@ -753,7 +996,9 @@
           "status": "doing",
           "owner": "economy",
           "prio": 1,
-          "deps": ["M10.9"],
+          "deps": [
+            "M10.9"
+          ],
           "deliverable": "tools/econ-sim.mjs + docs/18 十年报告",
           "accept": "node tools/econ-sim.mjs 跑完 120 个月，四种策略各有明确判定"
         }
@@ -780,7 +1025,9 @@
           "status": "done",
           "owner": "engine",
           "prio": 1,
-          "deps": ["M11.1"],
+          "deps": [
+            "M11.1"
+          ],
           "deliverable": "grant 公式、关系增减、冷却、拒绝条件",
           "accept": "关系 <25 拒绝；冷却按游戏日；施压扣帷幕 1"
         },
@@ -790,7 +1037,9 @@
           "status": "done",
           "owner": "ui",
           "prio": 1,
-          "deps": ["M11.2"],
+          "deps": [
+            "M11.2"
+          ],
           "deliverable": "右侧面板：列表 + 详情 + 四个动作 + 日志",
           "accept": "点外交按钮打开；动作更新关系、冷却、顶栏经费"
         },
@@ -800,7 +1049,9 @@
           "status": "todo",
           "owner": "content",
           "prio": 2,
-          "deps": ["M11.2"],
+          "deps": [
+            "M11.2"
+          ],
           "deliverable": "区域张力影响关系；让步到期被追讨的事件",
           "accept": "跑 12 个月关系有漂移；让步未兑现时触发 1 次追讨"
         },
@@ -810,7 +1061,10 @@
           "status": "todo",
           "owner": "engine",
           "prio": 2,
-          "deps": ["M11.2", "M9.2"],
+          "deps": [
+            "M11.2",
+            "M9.2"
+          ],
           "deliverable": "国家拨款由七政体关系汇总，替换静态公式",
           "accept": "调低某政体关系后，下月总收入随之下降"
         }
@@ -827,7 +1081,9 @@
           "status": "todo",
           "owner": "content",
           "prio": 1,
-          "deps": ["M4.1"],
+          "deps": [
+            "M4.1"
+          ],
           "deliverable": "删除记录/存档的部门树与隐藏值 memoryHoles",
           "accept": "删除降低污染但有代价；空洞高时部门等级会回退"
         },
@@ -837,7 +1093,9 @@
           "status": "todo",
           "owner": "content",
           "prio": 1,
-          "deps": ["M4.1"],
+          "deps": [
+            "M4.1"
+          ],
           "deliverable": "常态指数与公众接口；与原站点运营分支互斥",
           "accept": "常态指数影响帷幕与容量上限；两条路线不能同时选"
         },
@@ -847,7 +1105,9 @@
           "status": "todo",
           "owner": "content",
           "prio": 1,
-          "deps": ["M4.1"],
+          "deps": [
+            "M4.1"
+          ],
           "deliverable": "处决异常 / 与异常共处两组动作与后果",
           "accept": "处决回收容量但可能回归；共处提升士气但有失效风险"
         },
@@ -857,7 +1117,9 @@
           "status": "todo",
           "owner": "economy",
           "prio": 3,
-          "deps": ["M12.1"],
+          "deps": [
+            "M12.1"
+          ],
           "deliverable": "AIAD / TMO / 超现实 / 神话民俗 / 神秘动物 / 遏火，先以事件与分支存在",
           "accept": "六个部门各自至少 1 个事件或 1 个分支能力，不新开完整树"
         }
@@ -874,7 +1136,9 @@
           "status": "done",
           "owner": "economy",
           "prio": 1,
-          "deps": ["M4.1"],
+          "deps": [
+            "M4.1"
+          ],
           "deliverable": "14 个部门 × 19 个站点的 hq 映射，标 canon / inferred",
           "accept": "官方写明的 7 个驻地与文档一致；其余带 source 标记"
         },
@@ -884,7 +1148,9 @@
           "status": "done",
           "owner": "content",
           "prio": 1,
-          "deps": ["M13.1"],
+          "deps": [
+            "M13.1"
+          ],
           "deliverable": "15 支 MTF 的 dept / base / source",
           "accept": "Alpha-1 → O5、Omega-1 → 伦理、Gamma-4 → 神秘动物，与官方一致"
         },
@@ -894,7 +1160,9 @@
           "status": "done",
           "owner": "ui",
           "prio": 1,
-          "deps": ["M13.2"],
+          "deps": [
+            "M13.2"
+          ],
           "deliverable": "部门列表 + 驻地 + 等级 + 所属特遣队",
           "accept": "点特遣队按钮打开；切换部门能看到对应 MTF 与基地"
         },
@@ -904,7 +1172,10 @@
           "status": "todo",
           "owner": "engine",
           "prio": 2,
-          "deps": ["M13.3", "M4.3"],
+          "deps": [
+            "M13.3",
+            "M4.3"
+          ],
           "deliverable": "总部失守→部门降级/MTF 停摆；调动门槛",
           "accept": "攻破 S-87 后超形上学部 −1 级且 Lambda-5 停摆 2 回合"
         }
@@ -921,7 +1192,9 @@
           "status": "done",
           "owner": "economy",
           "prio": 1,
-          "deps": ["M13.1"],
+          "deps": [
+            "M13.1"
+          ],
           "deliverable": "14 部门 × 四项资源 + 需求线 + 19 站点容量/污染",
           "accept": "编制合计 84、D 级 1450、预算 94、容量 28/40、污染 8"
         },
@@ -931,7 +1204,9 @@
           "status": "done",
           "owner": "ui",
           "prio": 1,
-          "deps": ["M14.1"],
+          "deps": [
+            "M14.1"
+          ],
           "deliverable": "点顶栏资源打开面板，部门/站点双页签",
           "accept": "五个资源各有分布视图；状态色区分充足/紧张/缺员"
         },
@@ -941,7 +1216,9 @@
           "status": "done",
           "owner": "engine",
           "prio": 1,
-          "deps": ["M14.1"],
+          "deps": [
+            "M14.1"
+          ],
           "deliverable": "每 30 游戏日按满足率调整部门士气；顶栏显示均值",
           "accept": "缺员部门每月 −2；D 级 <70% 再 −1；顶栏士气随均值变化"
         },
@@ -951,7 +1228,10 @@
           "status": "todo",
           "owner": "engine",
           "prio": 1,
-          "deps": ["M14.3", "M9.9"],
+          "deps": [
+            "M14.3",
+            "M9.9"
+          ],
           "deliverable": "低效/事故/罢工三类后果与阈值",
           "accept": "士气 <40 产出 −25%；<25 每月 15% 罢工；缺员站点事故率上升"
         }
@@ -962,16 +1242,116 @@
       "title": "阶段 15 · 审计整改",
       "status": "doing",
       "children": [
-        { "id": "M15.1", "title": "轴 token 与符号约定（冷酷 = K+）", "status": "todo", "owner": "content", "prio": 1, "deps": [], "deliverable": "05 的选项行补足 C/L/K/V/P 五类 token；02 的轴表与符号对齐", "accept": "±40 / ±60 在 42 张卡里可达" },
-        { "id": "M15.2", "title": "K 链时间轴重排", "status": "todo", "owner": "content", "prio": 1, "deps": ["M15.1"], "deliverable": "门槛只看时钟；征兆移出 S0；S4 只在未收束时存在", "accept": "03 的阶段表与 42 张卡的时点不再冲突" },
-        { "id": "M15.3", "title": "部门升级与指令点 / 项目经济", "status": "todo", "owner": "economy", "prio": 1, "deps": ["M4.1"], "deliverable": "14 部门 × 5 级的能力与花费；指令点来源与消耗", "accept": "每回合指令点收支可算平；升级有明确成本与前置" },
-        { "id": "M15.4", "title": "state.js + 存档 v2", "status": "todo", "owner": "engine", "prio": 1, "deps": ["M14.1"], "deliverable": "单一状态层：资源/部门/站点/时间/外交统一读写", "accept": "刷新后状态不丢；五个面板读同一份 state" },
-        { "id": "M15.5", "title": "回合结算统一入口", "status": "todo", "owner": "engine", "prio": 1, "deps": ["M15.4"], "deliverable": "nextTurn() 一处结算收入/支出/士气/事件/冷却", "accept": "点归档只走一条路径；重复点击不重复结算" },
-        { "id": "M15.6", "title": "数值同步测试", "status": "todo", "owner": "economy", "prio": 2, "deps": ["M15.4"], "deliverable": "107.9 / 93.7 / 14.2 / 300 / 84 / 61 / 28-48 的断言", "accept": "改一处数字，测试立即失败并指出位置" },
-        { "id": "M15.7", "title": "任务树语义校验", "status": "todo", "owner": "qa", "prio": 2, "deps": [], "deliverable": "done 节点的 deps 必须全部 done；owner 必须存在", "accept": "tasks-check 增加语义检查并通过" },
-        { "id": "M15.8", "title": "innerHTML 安全清理", "status": "todo", "owner": "ui", "prio": 2, "deps": [], "deliverable": "存档/事件数据一律 textContent 或 escapeHTML", "accept": "grep innerHTML 不含变量拼接用户/存档数据" },
-        { "id": "M15.9", "title": "测试独立性", "status": "todo", "owner": "qa", "prio": 2, "deps": [], "deliverable": "engine-test 每条用例独立 create()", "accept": "单条用例可单独跑，不依赖前一条的日期" },
-        { "id": "M15.10", "title": "资源引用与符号检查", "status": "todo", "owner": "qa", "prio": 3, "deps": [], "deliverable": "src/href/#symbol 全量解析脚本", "accept": "0 个悬空引用；9 个母版 viewBox 与 sprite 一致" }
+        {
+          "id": "M15.1",
+          "title": "轴 token 与符号约定（冷酷 = K+）",
+          "status": "todo",
+          "owner": "content",
+          "prio": 1,
+          "deps": [],
+          "deliverable": "05 的选项行补足 C/L/K/V/P 五类 token；02 的轴表与符号对齐",
+          "accept": "±40 / ±60 在 42 张卡里可达"
+        },
+        {
+          "id": "M15.2",
+          "title": "K 链时间轴重排",
+          "status": "todo",
+          "owner": "content",
+          "prio": 1,
+          "deps": [
+            "M15.1"
+          ],
+          "deliverable": "门槛只看时钟；征兆移出 S0；S4 只在未收束时存在",
+          "accept": "03 的阶段表与 42 张卡的时点不再冲突"
+        },
+        {
+          "id": "M15.3",
+          "title": "部门升级与指令点 / 项目经济",
+          "status": "todo",
+          "owner": "economy",
+          "prio": 1,
+          "deps": [
+            "M4.1"
+          ],
+          "deliverable": "14 部门 × 5 级的能力与花费；指令点来源与消耗",
+          "accept": "每回合指令点收支可算平；升级有明确成本与前置"
+        },
+        {
+          "id": "M15.4",
+          "title": "state.js + 存档 v2",
+          "status": "todo",
+          "owner": "engine",
+          "prio": 1,
+          "deps": [
+            "M14.1"
+          ],
+          "deliverable": "单一状态层：资源/部门/站点/时间/外交统一读写",
+          "accept": "刷新后状态不丢；五个面板读同一份 state"
+        },
+        {
+          "id": "M15.5",
+          "title": "回合结算统一入口",
+          "status": "todo",
+          "owner": "engine",
+          "prio": 1,
+          "deps": [
+            "M15.4"
+          ],
+          "deliverable": "nextTurn() 一处结算收入/支出/士气/事件/冷却",
+          "accept": "点归档只走一条路径；重复点击不重复结算"
+        },
+        {
+          "id": "M15.6",
+          "title": "数值同步测试",
+          "status": "todo",
+          "owner": "economy",
+          "prio": 2,
+          "deps": [
+            "M15.4"
+          ],
+          "deliverable": "107.9 / 93.7 / 14.2 / 300 / 84 / 61 / 28-48 的断言",
+          "accept": "改一处数字，测试立即失败并指出位置"
+        },
+        {
+          "id": "M15.7",
+          "title": "任务树语义校验",
+          "status": "todo",
+          "owner": "qa",
+          "prio": 2,
+          "deps": [],
+          "deliverable": "done 节点的 deps 必须全部 done；owner 必须存在",
+          "accept": "tasks-check 增加语义检查并通过"
+        },
+        {
+          "id": "M15.8",
+          "title": "innerHTML 安全清理",
+          "status": "todo",
+          "owner": "ui",
+          "prio": 2,
+          "deps": [],
+          "deliverable": "存档/事件数据一律 textContent 或 escapeHTML",
+          "accept": "grep innerHTML 不含变量拼接用户/存档数据"
+        },
+        {
+          "id": "M15.9",
+          "title": "测试独立性",
+          "status": "todo",
+          "owner": "qa",
+          "prio": 2,
+          "deps": [],
+          "deliverable": "engine-test 每条用例独立 create()",
+          "accept": "单条用例可单独跑，不依赖前一条的日期"
+        },
+        {
+          "id": "M15.10",
+          "title": "资源引用与符号检查",
+          "status": "todo",
+          "owner": "qa",
+          "prio": 3,
+          "deps": [],
+          "deliverable": "src/href/#symbol 全量解析脚本",
+          "accept": "0 个悬空引用；9 个母版 viewBox 与 sprite 一致"
+        }
       ]
     },
     {
@@ -985,7 +1365,9 @@
           "status": "done",
           "owner": "economy",
           "prio": 1,
-          "deps": ["M13.1"],
+          "deps": [
+            "M13.1"
+          ],
           "deliverable": "17 项每级效果 + 升级成本公式；末日学部为 aux",
           "accept": "效果是纯函数 f(level)，不另存快照"
         },
@@ -995,7 +1377,9 @@
           "status": "done",
           "owner": "ui",
           "prio": 1,
-          "deps": ["M16.1"],
+          "deps": [
+            "M16.1"
+          ],
           "deliverable": "组织面板的等级行、升级按钮、经费扣减、效果预览",
           "accept": "点升级扣 6+4L、加一级；满级禁用；经费不足禁用"
         },
@@ -1005,7 +1389,10 @@
           "status": "todo",
           "owner": "engine",
           "prio": 1,
-          "deps": ["M16.2", "M15.4"],
+          "deps": [
+            "M16.2",
+            "M15.4"
+          ],
           "deliverable": "帷幕衰减/上限、K 级预警天数、科研速度三处结算",
           "accept": "延续部升级后帷幕月衰减下降；末日学部升级后预警天数上升"
         },
@@ -1015,7 +1402,9 @@
           "status": "todo",
           "owner": "content",
           "prio": 2,
-          "deps": ["M16.1"],
+          "deps": [
+            "M16.1"
+          ],
           "deliverable": "末日学部的来历、驻地 Site-103、2 条专属事件",
           "accept": "事件只在末日学部 ≥2 级时出现"
         }
@@ -1028,11 +1417,13 @@
       "children": [
         {
           "id": "M17.1",
-          "title": "外务部",
+          "title": "高级外交部（外务）",
           "status": "todo",
           "owner": "content",
           "prio": 1,
-          "deps": ["M11.2"],
+          "deps": [
+            "M11.2"
+          ],
           "deliverable": "外交归属、每级拨款 +3%、冷却 −1 月、5 级联合行动",
           "accept": "外务部等级影响外交面板的拨款额与冷却"
         },
@@ -1042,29 +1433,47 @@
           "status": "todo",
           "owner": "content",
           "prio": 1,
-          "deps": ["M14.1"],
+          "deps": [
+            "M14.1"
+          ],
           "deliverable": "编制上限 +1/级、士气 +1/级、3 级跨部门借调",
           "accept": "升级后编制上限与士气均值变化；借调会扣另一部门士气"
         },
         {
           "id": "M17.3",
-          "title": "情报部",
+          "title": "危机评估部（预警）",
           "status": "todo",
           "owner": "content",
           "prio": 2,
-          "deps": ["M16.3"],
-          "deliverable": "事件预览 +1 条/级；末日学部预警天数 +0.5/级",
+          "deps": [
+            "M16.3"
+          ],
+          "deliverable": "K 级预警 +1 天/级、事件预览 +1 条/级；与末日学部联动",
           "accept": "情报部 ≥2 级时能看到下月事件类型；预警天数联动"
         },
         {
           "id": "M17.4",
-          "title": "反概念部 / 空间阻断部事件化",
+          "title": "虚科假室部门 / 反概念部事件化",
           "status": "todo",
           "owner": "content",
           "prio": 3,
-          "deps": ["M15.2"],
-          "deliverable": "各 2–3 张事件卡，不做部门树",
-          "accept": "反概念事件删掉一个选项而非一个部门；空间阻断事件给站点加一层"
+          "deps": [
+            "M15.2"
+          ],
+          "deliverable": "各 2–3 张事件卡；虚科假室做「多出一行部门」的元事件",
+          "accept": "虚科假室事件让组织面板多出一个不存在的部门；反概念事件删掉一个选项"
+        },
+        {
+          "id": "M17.5",
+          "title": "会计部门（审计与结算）",
+          "status": "todo",
+          "owner": "economy",
+          "prio": 1,
+          "deps": [
+            "M9.2"
+          ],
+          "deliverable": "审计抗性、月度结算误差、黑账追查",
+          "accept": "会计部等级影响双账被发现的概率与追回率"
         }
       ]
     }
