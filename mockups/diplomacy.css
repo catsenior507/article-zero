@@ -1,0 +1,42 @@
+/* 外交面板 */
+.dippanel{position:absolute;right:86px;top:168px;height:604px;width:520px;z-index:29;
+  background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow);
+  display:none;flex-direction:column;
+  clip-path:polygon(0 24px,24px 0,100% 0,100% calc(100% - 26px),calc(100% - 26px) 100%,0 100%)}
+.dippanel.open{display:flex}
+.dph{height:50px;display:flex;align-items:center;gap:10px;padding:0 16px;
+  border-bottom:1px solid var(--line);flex:none}
+.dph b{font-size:14px;letter-spacing:.16em;font-weight:600}
+.dph .dpn{font:9px/1 Consolas;color:var(--dim);letter-spacing:.1em}
+.dph .dpx{margin-left:auto;color:var(--muted);cursor:pointer;font-size:15px}
+.dph .dpx:hover{color:var(--accent)}
+
+.dplist{max-height:224px;overflow:auto;border-bottom:1px solid var(--line);flex:none}
+.dprow-item{display:flex;align-items:center;gap:8px;padding:7px 14px;cursor:pointer;
+  border-bottom:1px solid var(--line-soft)}
+.dprow-item:hover{background:var(--rowalt)}
+.dprow-item.on{background:var(--selbg)}
+.dpshort{width:26px;height:18px;display:flex;align-items:center;justify-content:center;
+  font:9px/1 Consolas;color:var(--accent);border:1px solid var(--line);flex:none}
+.dpnm{flex:1;font-size:12px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dpmini{width:70px;height:3px;background:var(--track);flex:none}
+.dpmini i{display:block;height:100%;background:var(--accent)}
+.dpv{font:10px/1 Consolas;color:var(--muted);width:24px;text-align:right;flex:none}
+
+.dpdetail{flex:1;padding:14px 16px;display:flex;flex-direction:column;gap:8px;min-height:0}
+.dpname{font-size:14px;font-weight:600;letter-spacing:.06em}
+.dprow{display:flex;align-items:center;gap:10px;font-size:11px;color:var(--muted)}
+.dprow>span:first-child{width:64px;flex:none;color:var(--dim);font-size:10px;letter-spacing:.1em}
+.dpbar{flex:1;height:4px;background:var(--track)}
+.dpbar i{display:block;height:100%;background:var(--accent)}
+.dprow b{font:11px/1 Consolas;color:var(--text);min-width:58px;text-align:right}
+.dpcond{font:10px/1.4 Consolas;color:var(--dim)}
+
+.dpacts{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:4px}
+.dpacts button{background:var(--btnbg);border:1px solid var(--line);color:var(--muted);
+  font:11px/1 "Microsoft YaHei","Segoe UI",sans-serif;padding:8px 6px;cursor:pointer;letter-spacing:.06em}
+.dpacts button:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
+.dpacts button:disabled{opacity:.35;cursor:not-allowed}
+.dphint{font:9px/1.5 Consolas;color:var(--dim);min-height:28px}
+.dplog{margin-top:auto;border-top:1px dashed var(--line-soft);padding-top:8px;max-height:96px;overflow:auto;
+  font:10px/1.7 Consolas;color:var(--muted)}

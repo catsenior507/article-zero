@@ -25,7 +25,18 @@ window.SAVE_DEFAULT = {
     veil: { value: 78, state: '正常', delta: 0 },
     sites: 19,
     pending: ['d02', 'd03'],  // 清洁工的加班单 / 新人的第一课
-    notice: 'SITE-44 报告一次未登记的人员变动。'
+    notice: 'SITE-44 报告一次未登记的人员变动。',
+
+    // 外交：七个区域政府的可变状态（名称、预算与条件在 diplomacy.js 里）
+    governments: [
+      { id: 'na', relation: 62, cooldownDay: 0, concessions: [] },
+      { id: 'eu', relation: 48, cooldownDay: 0, concessions: [] },
+      { id: 'as', relation: 41, cooldownDay: 0, concessions: [] },
+      { id: 'sa', relation: 35, cooldownDay: 0, concessions: [] },
+      { id: 'af', relation: 28, cooldownDay: 0, concessions: [] },
+      { id: 'oc', relation: 52, cooldownDay: 0, concessions: [] },
+      { id: 'an', relation: 20, cooldownDay: 0, concessions: [] }
+    ]
   },
 
   resources: {

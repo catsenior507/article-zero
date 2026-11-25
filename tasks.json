@@ -758,6 +758,63 @@
           "accept": "node tools/econ-sim.mjs 跑完 120 个月，四种策略各有明确判定"
         }
       ]
+    },
+    {
+      "id": "M11",
+      "title": "阶段 11 · 外交",
+      "status": "doing",
+      "children": [
+        {
+          "id": "M11.1",
+          "title": "外交数据与七个虚构政体",
+          "status": "done",
+          "owner": "economy",
+          "prio": 1,
+          "deps": [],
+          "deliverable": "diplomacy.js 的 GOV_DEFS + 存档 world.governments",
+          "accept": "七个政体全部为虚构名；存档只存可变状态（关系/冷却/让步）"
+        },
+        {
+          "id": "M11.2",
+          "title": "拨款 / 谈判 / 施压 / 交换逻辑",
+          "status": "done",
+          "owner": "engine",
+          "prio": 1,
+          "deps": ["M11.1"],
+          "deliverable": "grant 公式、关系增减、冷却、拒绝条件",
+          "accept": "关系 <25 拒绝；冷却按游戏日；施压扣帷幕 1"
+        },
+        {
+          "id": "M11.3",
+          "title": "外交面板",
+          "status": "done",
+          "owner": "ui",
+          "prio": 1,
+          "deps": ["M11.2"],
+          "deliverable": "右侧面板：列表 + 详情 + 四个动作 + 日志",
+          "accept": "点外交按钮打开；动作更新关系、冷却、顶栏经费"
+        },
+        {
+          "id": "M11.4",
+          "title": "关系漂移与让步追讨事件",
+          "status": "todo",
+          "owner": "content",
+          "prio": 2,
+          "deps": ["M11.2"],
+          "deliverable": "区域张力影响关系；让步到期被追讨的事件",
+          "accept": "跑 12 个月关系有漂移；让步未兑现时触发 1 次追讨"
+        },
+        {
+          "id": "M11.5",
+          "title": "接入财政结算",
+          "status": "todo",
+          "owner": "engine",
+          "prio": 2,
+          "deps": ["M11.2", "M9.2"],
+          "deliverable": "国家拨款由七政体关系汇总，替换静态公式",
+          "accept": "调低某政体关系后，下月总收入随之下降"
+        }
+      ]
     }
   ]
 }
